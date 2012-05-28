@@ -36,3 +36,5 @@ distribute*.tar.gz
 celerybeat-schedule
 
 venv*
+
+.DS_Store
