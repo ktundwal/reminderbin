@@ -7,4 +7,5 @@ import reminderbin
 DJANGO_ROOT = os.path.dirname(os.path.realpath(django.__file__))
 SITE_ROOT = os.path.dirname(os.path.realpath(reminderbin.__file__))
 
-from prod import *
+ENVIRONMENT = os.environ.get('ENVIRONMENT', 'dev')  # dev, prod, test, etc
+exec('from %s import *' % ENVIRONMENT)
