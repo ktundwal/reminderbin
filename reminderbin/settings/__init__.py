@@ -7,4 +7,4 @@ import reminderbin
 DJANGO_ROOT = os.path.dirname(os.path.realpath(django.__file__))
 SITE_ROOT = os.path.dirname(os.path.realpath(reminderbin.__file__))
 
-from dev import *
+from prod import *
