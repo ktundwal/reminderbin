@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4a3c8a4f-f8d4-4ff0-b41f-cd78e3018fce" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reminderbin/settings/__init__.py" afterPath="$PROJECT_DIR$/reminderbin/settings/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements/prod.txt" afterPath="$PROJECT_DIR$/requirements/prod.txt" />
     </list>
     <ignored path="reminderbin-src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,7 +46,7 @@
       <file leaf-file-name="prod.txt" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/requirements/prod.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="12" selection-start="130" selection-end="130" vertical-scroll-proportion="0.0">
+            <state line="7" column="25" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -103,7 +104,7 @@
       <file leaf-file-name="__init__.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/reminderbin/settings/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="38" selection-start="384" selection-end="384" vertical-scroll-proportion="0.310559">
+            <state line="14" column="25" selection-start="530" selection-end="530" vertical-scroll-proportion="0.4347826">
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -137,11 +138,11 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/requirements/common.txt" />
-        <option value="$PROJECT_DIR$/requirements/prod.txt" />
         <option value="$PROJECT_DIR$/reminderbin/settings/prod.py" />
         <option value="$PROJECT_DIR$/reminderbin/settings/dev.py" />
         <option value="$PROJECT_DIR$/reminderbin/urls.py" />
         <option value="$PROJECT_DIR$/reminderbin/settings/common.py" />
+        <option value="$PROJECT_DIR$/requirements/prod.txt" />
         <option value="$PROJECT_DIR$/reminderbin/settings/__init__.py" />
       </list>
     </option>
@@ -503,13 +504,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements/prod.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="12" selection-start="130" selection-end="130" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements/common.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="16" selection-start="275" selection-end="275" vertical-scroll-proportion="0.0">
@@ -572,9 +566,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/requirements/prod.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="25" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/reminderbin/settings/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="38" selection-start="384" selection-end="384" vertical-scroll-proportion="0.310559">
+        <state line="14" column="25" selection-start="530" selection-end="530" vertical-scroll-proportion="0.4347826">
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
