@@ -1,5 +1,6 @@
 # Django settings for reminderbin project.
 import os
+from reminderbin.settings import *
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -101,6 +102,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(SITE_ROOT, "templates"),
 )
 
 INSTALLED_APPS = (
@@ -111,7 +113,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'kombu.transport.django',
+    'registration',
     'djcelery',
+    'south',
+    'django.contrib.humanize',
     # 'indexer',
     # 'paging',
     # 'sentry',
@@ -121,7 +126,16 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+    'reminder',
 )
+
+# django-registration
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'kapil.tundwal@gmail.com'
+EMAIL_HOST_PASSWORD = '4slirkknk'
+EMAIL_PORT = 587
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -154,3 +168,5 @@ LOGGING = {
 
 # Celery configuration
 BROKER_BACKEND = 'django'
+
+AUTH_PROFILE_MODULE = 'reminder.Provider'

@@ -6,8 +6,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 message = """
-Hello, Los Angeles django users! I hope you are having a good time so far at
-the meetup! Goodbye.
+Hello, Reminderbin users! This is just a dummy response from twilio library.
 """
 
 urlpatterns = patterns('',
@@ -27,4 +26,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+
+    (r'^accounts/', include('registration.backends.default.urls')),
 )
