@@ -133,8 +133,8 @@ INSTALLED_APPS = (
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'kapil.tundwal@gmail.com'
-EMAIL_HOST_PASSWORD = '4slirkknk'
+EMAIL_HOST_USER = 'indraworks@gmail.com'
+EMAIL_HOST_PASSWORD = 'Denver123'
 EMAIL_PORT = 587
 
 # A sample logging configuration. The only tangible logging
