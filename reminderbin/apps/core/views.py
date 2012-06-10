@@ -22,7 +22,7 @@ def register(request):
             form.save()
             messages.success(request, 'Thank you for registering, you can now '
                                       'login.')
-            send_invite_email(form.data['email'])
+            send_invite_email(form.data['username'], form.data['email'])
             return HttpResponseRedirect(reverse('core:login'))
     else:
         form = UserCreationFormWithEmail()
@@ -35,7 +35,7 @@ def logout_user(request):
     messages.success(request, 'You have successfully logged out.')
     return HttpResponseRedirect(reverse('core:home'))
 
-def send_invite_email(to):
+def send_invite_email(recipient_name, recipient_email):
     '''
     helper that's used to send an e-mail to the manager when a new tweet has been submitted
     for review or if an existing tweet has been updated.
@@ -43,5 +43,5 @@ def send_invite_email(to):
     and credentials in the settings files.
     '''
     subject = 'Thanks for signing up at reminderBin'
-    body = ('Welcome. Please login using your username and password and do let us know if you run into a bug. Thx')
-    send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [to])
+    body = ('Welcome ' + recipient_name + ', Please login at http://reminderbin.herokuapp.com/login with your username and password. Do let us know if you run into a bug. Thx -Kapil @ reminderBin')
+    send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [recipient_email])

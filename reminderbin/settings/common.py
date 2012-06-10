@@ -163,7 +163,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'indraworks@gmail.com'
 EMAIL_HOST_PASSWORD = 'Denver123'
 EMAIL_PORT = 587
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = 'ReminderBin <indraworks@gmail.com>'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
