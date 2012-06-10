@@ -11,6 +11,6 @@ SITE_ROOT = os.path.dirname(os.path.realpath(reminderbin.__file__))
 ENVIRONMENT = os.environ.get('ENVIRONMENT', 'dev')  # dev, prod, test, etc
 exec('from %s import *' % ENVIRONMENT)
 
-if ENVIRONMENT == 'prod':
-    from postgresify import postgresify
-    DATABASES = postgresify()
+#if ENVIRONMENT == 'prod':
+#    from postgresify import postgresify
+#    DATABASES = postgresify()
