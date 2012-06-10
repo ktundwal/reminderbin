@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a3c8a4f-f8d4-4ff0-b41f-cd78e3018fce" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reminderbin/settings/common.py" afterPath="$PROJECT_DIR$/reminderbin/settings/common.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reminderbin/urls.py" afterPath="$PROJECT_DIR$/reminderbin/urls.py" />
     </list>
     <ignored path="reminderbin-src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,10 +71,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="common.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/reminderbin/settings/common.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="36" selection-start="2086" selection-end="2086" vertical-scroll-proportion="0.64270616">
+            <state line="60" column="36" selection-start="2086" selection-end="2086" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#43#52#0" expanded="true" />
               </folding>
@@ -111,10 +111,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/reminderbin/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="28" selection-start="602" selection-end="602" vertical-scroll-proportion="0.0">
+            <state line="26" column="50" selection-start="948" selection-end="948" vertical-scroll-proportion="0.71458775">
               <folding />
             </state>
           </provider>
@@ -137,7 +137,6 @@
         <option value="$PROJECT_DIR$/reminder/admin.py" />
         <option value="$PROJECT_DIR$/reminder/models.py" />
         <option value="$PROJECT_DIR$/requirements/common.txt" />
-        <option value="$PROJECT_DIR$/reminderbin/urls.py" />
         <option value="$PROJECT_DIR$/reminderbin/templates/registration/registration_form.html" />
         <option value="$PROJECT_DIR$/reminderbin/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/reminderbin/templates/registration/base.html" />
@@ -150,6 +149,7 @@
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/reminderbin/settings/__init__.py" />
         <option value="$PROJECT_DIR$/reminderbin/settings/common.py" />
+        <option value="$PROJECT_DIR$/reminderbin/urls.py" />
       </list>
     </option>
   </component>
@@ -200,20 +200,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="reminderbin-src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reminderbin-src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reminderbin-src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="requirements" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -581,13 +567,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reminderbin/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="28" selection-start="602" selection-end="602" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/reminderbin/settings/prod.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="10" selection-start="371" selection-end="371" vertical-scroll-proportion="0.0">
@@ -622,10 +601,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/reminderbin/settings/common.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="36" selection-start="2086" selection-end="2086" vertical-scroll-proportion="0.64270616">
+        <state line="60" column="36" selection-start="2086" selection-end="2086" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#43#52#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reminderbin/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="50" selection-start="948" selection-end="948" vertical-scroll-proportion="0.71458775">
+          <folding />
         </state>
       </provider>
     </entry>
