@@ -5,4 +5,5 @@ django-htmlmin==0.5.1
 gunicorn==0.14.2
 psycopg2==2.4.5
 raven==1.3.5
-dj-database-url
+django-heroku-postgresify
+# dj-database-url
