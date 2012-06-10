@@ -1,0 +1,155 @@
+{% load new_pin %}
+{% load new_reminder %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Reminderbin - {% block title %}{% endblock %}</title>
+
+        {% if debug %}
+        <link rel="stylesheet" href="/static/vendor/bootstrap/2.0.3/css/bootstrap.css">
+        <link rel="stylesheet" href="/static/vendor/fancybox/2.0.6/jquery.fancybox.css">
+        {% else %}
+        <link rel="stylesheet" href="/static/vendor/bootstrap/2.0.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/vendor/fancybox/2.0.6/jquery.fancybox.css">
+        {% endif %}
+
+        <link href="/static/vendor/bootstrap/2.0.3/css/docs.css" rel="stylesheet">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Fredericka+the+Great">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Righteous">
+
+        <link rel="stylesheet" href="/static/core/css/reminderpin.css">
+    </head>
+    <body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+        <!-- Navbar
+        ================================================== -->
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <a href="{% url core:home %}" class="brand">reminderBin</a>
+
+                <ul class="nav pull-right">
+                    {% if user.is_authenticated %}
+                    <li><a href="#new-pin" data-toggle="modal">New Pin</a></li>
+                    <li><a href="#new-reminder" data-toggle="modal">New Reminder</a></li>
+                    <li><a href="{% url core:logout %}">Logout {{ user.username }}</a></li>
+                    {% else %}
+                    <li><a href="{% url core:login %}">Login</a></li>
+                    <li><a href="{% url core:register %}">Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Masthead
+           ================================================== -->
+            <header class="jumbotron masthead">
+                <div class="inner">
+                    <h1>Appointment Reminders</h1>
+                    <p>Simple and efficient SMS based patient reminder and education services for health care provides.</p>
+                    <p class="download-info">
+                        <a href="/register/" class="btn btn-primary btn-large">Register</a>
+                    </p>
+                </div>
+
+                <div class="bs-links">
+                    <ul class="quick-links">
+                        <li><a href="http://fixme.com">Link 1</a></li>
+                        <li><a href="http://fixme.com">Link 2</a></li>
+                        <li><a href="http://fixme.com">Link 3</a></li>
+                        <li><a href="http://fixme.com">Link 4</a></li>
+                    </ul>
+                    <ul class="quick-links">
+                        <li class="follow-btn">
+                            <a href="https://twitter.com/reminderbin" class="twitter-follow-button" data-link-color="#0069D6" data-show-count="true">Follow @reminderbin</a>
+                        </li>
+                        <li class="tweet-btn">
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://reminderbin.com" data-count="horizontal" data-via="reminderbin" data-related="mdo:Creator of reminderBin">Tweet</a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+
+            <hr class="soften">
+
+            <div class="marketing">
+                <h1>Designed for small and medium sized health providers.</h1>
+                <p class="marketing-byline">Need reasons to love reminderBin? Look no further.</p>
+                <div class="row">
+                    <div class="span4">
+                        <img class="bs-icon" src="http://twitter.github.com/bootstrap/assets/img/glyphicons/glyphicons_042_group.png">
+                        <h2>Why this matters?</h2>
+                        <p>You can cut down no-shows by almost half if you remind your customers about upcoming appointments.</p>
+                    </div>
+                    <div class="span4">
+                        <img class="bs-icon" src="http://twitter.github.com/bootstrap/assets/img/glyphicons/glyphicons_079_podium.png">
+                        <h2>Interactive</h2>
+                        <p>This service allows your customers to interact simply via texting. Serve them without hiring an assistant, customer service and computer w internet connection</p>
+                    </div>
+                    <div class="span4">
+                        <img class="bs-icon" src="http://twitter.github.com/bootstrap/assets/img/glyphicons/glyphicons_163_iphone.png">
+                        <h2>API</h2>
+                        <p>Interested in integrating this with your scheduling system? This service is available via HTTP/JSON API.</p>
+                    </div>
+                </div><!--/row-->
+
+                <hr class="soften">
+
+                <h1>Using reminderBin.</h1>
+                <p class="marketing-byline">For even more clinics using reminderBin, <a href="http://tundwal.com/" target="_blank">visit our blog</a>.</p>
+                <ul class="thumbnails example-sites">
+                    <li class="span3">
+                        <a class="thumbnail" href="http://soundready.fm/" target="_blank">
+                            <img src="http://twitter.github.com/bootstrap/assets/img/example-sites/soundready.png" alt="SoundReady.fm">
+                        </a>
+                    </li>
+                    <li class="span3">
+                        <a class="thumbnail" href="http://kippt.com/" target="_blank">
+                            <img src="http://twitter.github.com/bootstrap/assets/img/example-sites/kippt.png" alt="Kippt">
+                        </a>
+                    </li>
+                    <li class="span3">
+                        <a class="thumbnail" href="http://www.fleetio.com/" target="_blank">
+                            <img src="http://twitter.github.com/bootstrap/assets/img/example-sites/fleetio.png" alt="Fleetio">
+                        </a>
+                    </li>
+                    <li class="span3">
+                        <a class="thumbnail" href="http://www.jshint.com/" target="_blank">
+                            <img src="http://twitter.github.com/bootstrap/assets/img/example-sites/jshint.png" alt="JS Hint">
+                        </a>
+                    </li>
+                </ul>
+
+            </div><!-- /.marketing -->
+
+            <!-- Footer
+           ================================================== -->
+            <footer class="footer">
+                <p class="pull-right"><a href="#">Back to top</a></p>
+                &copy; Indraworks 2012. Designed and developed in Denver, Colorado
+            </footer>
+        </div><!-- /container -->
+
+        {% new_pin %}
+
+        {% new_reminder %}
+
+        {% if debug %}
+            <script src="/static/vendor/jquery/1.7.2/jquery.js"></script>
+            <script src="/static/vendor/bootstrap/2.0.3/js/bootstrap.js"></script>
+            <script src="/static/vendor/wookmark/0.5/jquery.wookmark.js"></script>
+            <script src="/static/vendor/fancybox/2.0.6/jquery.fancybox.js"></script>
+            <script src="/static/vendor/imagesloaded/2.0.1/jquery.imagesloaded.js"></script>
+        {% else %}
+            <script src="/static/vendor/jquery/1.7.2/jquery.min.js"></script>
+            <script src="/static/vendor/bootstrap/2.0.3/js/bootstrap.min.js"></script>
+            <script src="/static/vendor/wookmark/0.5/jquery.wookmark.min.js"></script>
+            <script src="/static/vendor/fancybox/2.0.6/jquery.fancybox.pack.js"></script>
+            <script src="/static/vendor/imagesloaded/2.0.1/jquery.imagesloaded.min.js"></script>
+        {% endif %}
+
+        <script src="/static/core/js/reminderpin.js"></script>
+        <script src="/static/core/js/messages.js"></script>
+    </body>
+</html>

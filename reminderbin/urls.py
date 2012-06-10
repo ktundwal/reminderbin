@@ -10,8 +10,13 @@ Hello, Reminderbin users! This is just a dummy response from twilio library.
 """
 
 urlpatterns = patterns('',
-    url(r'^$', 'django_twilio.views.say', {'text': message}),
-    url(r'^$', 'django_twilio.views.conference', {
+    url(r'', include('reminderbin.apps.core.urls', namespace='core')),
+    url(r'^reminders/', include('reminderbin.apps.reminders.urls', namespace='reminders')),
+    url(r'^pins/', include('reminderbin.apps.pins.urls', namespace='pins')),
+    url(r'^api/', include('reminderbin.apps.api.urls', namespace='api')),
+
+    url(r'^say/$', 'django_twilio.views.say', {'text': message}),
+    url(r'^conf/$', 'django_twilio.views.conference', {
         'name': 'conf1',
         'wait_url': 'http://twimlets.com/holdmusic?Bucket=com.twilio.music.rock',
         'wait_method': 'GET',
@@ -29,5 +34,6 @@ urlpatterns = patterns('',
 
     (r'^accounts/', include('registration.backends.default.urls')),
 
-    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
+            {'document_root': settings.STATIC_ROOT}),
 )

@@ -1,6 +1,7 @@
 # Django settings for reminderbin project.
 import os
 from reminderbin.settings import *
+from django.contrib.messages import constants as messages
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -89,7 +90,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
@@ -108,6 +109,14 @@ TEMPLATE_DIRS = (
     os.path.join(SITE_ROOT, "templates"),
 )
 
+MESSAGE_TAGS = {
+    messages.WARNING: 'alert',
+    messages.ERROR: 'alert alert-error',
+    messages.SUCCESS: 'alert alert-success',
+    messages.INFO: 'alert alert-info',
+    }
+API_LIMIT_PER_PAGE = 20
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -115,10 +124,16 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'south',
+
     'kombu.transport.django',
+    'reminderbin.apps.vendor',
+    'reminderbin.apps.core',
+    'reminderbin.apps.pins',
+    'reminderbin.apps.reminders',
+    'reminderbin.apps.api',
     'registration',
     'djcelery',
-    'south',
     'django.contrib.humanize',
     # 'indexer',
     # 'paging',
@@ -148,6 +163,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'indraworks@gmail.com'
 EMAIL_HOST_PASSWORD = 'Denver123'
 EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -181,4 +197,4 @@ LOGGING = {
 # Celery configuration
 BROKER_BACKEND = 'django'
 
-AUTH_PROFILE_MODULE = 'reminder.Provider'
+#AUTH_PROFILE_MODULE = 'reminder.Provider'
