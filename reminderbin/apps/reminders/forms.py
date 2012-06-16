@@ -19,22 +19,47 @@ from django import forms
 from django.contrib.admin.widgets import AdminDateWidget
 import datetime
 from .models import *
+from .fields import *
 from django.contrib.localflavor.us.forms import USPhoneNumberField
+
+class PatientForm(forms.ModelForm):
+
+    cell = USPhoneNumberField()
+
+    class Meta:
+        model = Patient
+        exclude = ['created_by', 'created_on']
+
+class MedicalProfessionalForm(forms.ModelForm):
+
+    cell = USPhoneNumberField()
+
+    class Meta:
+        model = MedicalProfessional
+        exclude = ['created_by']
+
+class AppointmentForm(forms.ModelForm):
+
+    date = forms.DateField(required=True)
+    date.widget.attrs = {'class':'datePicker', 'readonly':'true',}
+    time = forms.TimeField(required=True, input_formats=['%I:%M %p'])
+    time.widget.attrs = {'class':'timePicker'}
+
+    class Meta:
+        model = Appointment
+        exclude = ['created_by']
 
 class ReminderForm(forms.ModelForm):
 
-    patient_cell = USPhoneNumberField()
-    reminders = MultiSelectFormField(choices=REMINDER_CHOICES)
+    date = forms.DateField(required=True)
+    date.widget.attrs = {'class':'datePicker', 'readonly':'true',}
+    time = forms.TimeField(required=True, input_formats=['%I:%M %p'])
+    time.widget.attrs = {'class':'timePicker'}
 
-    appointment_date = forms.DateField(required=True)
-    appointment_date.widget.attrs = {'class':'datePicker', 'readonly':'true',}
-    appointment_time = forms.TimeField(required=True, input_formats=['%I:%M %p'])
-    appointment_time.widget.attrs = {'class':'timePicker'}
-
-    def clean_my_field(self):
-        if len(self.cleaned_data['reminder_choices_field']) == 0:
-            raise forms.ValidationError('Select at least one option')
-        return self.cleaned_data['reminder_choices_field']
+    #def clean_my_field(self):
+    #    if len(self.cleaned_data['reminder_choices_field']) == 0:
+    #        raise forms.ValidationError('Select at least one option')
+    #    return self.cleaned_data['reminder_choices_field']
 
     class Meta:
         model = Reminder

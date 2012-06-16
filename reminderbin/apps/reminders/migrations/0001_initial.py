@@ -8,19 +8,65 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Adding model 'Patient'
+        db.create_table('reminders_patient', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('created_by', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('created_on', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('consent_status', self.gf('django.db.models.fields.IntegerField')(default=1)),
+            ('status', self.gf('django.db.models.fields.IntegerField')(default=1)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=200)),
+            ('cell', self.gf('django.db.models.fields.CharField')(max_length=200)),
+            ('notes', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
+        ))
+        db.send_create_signal('reminders', ['Patient'])
+
+        # Adding model 'MedicalProfessional'
+        db.create_table('reminders_medicalprofessional', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('created_by', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('status', self.gf('django.db.models.fields.IntegerField')(default=1)),
+            ('type', self.gf('django.db.models.fields.IntegerField')(default=1)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=200)),
+            ('cell', self.gf('django.db.models.fields.CharField')(max_length=200)),
+        ))
+        db.send_create_signal('reminders', ['MedicalProfessional'])
+
+        # Adding model 'Appointment'
+        db.create_table('reminders_appointment', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('created_by', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('patient', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['reminders.Patient'])),
+            ('appointment_with', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['reminders.MedicalProfessional'])),
+            ('date', self.gf('django.db.models.fields.DateField')()),
+            ('time', self.gf('django.db.models.fields.TimeField')()),
+            ('description', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
+            ('status', self.gf('django.db.models.fields.IntegerField')(default=1)),
+        ))
+        db.send_create_signal('reminders', ['Appointment'])
+
         # Adding model 'Reminder'
         db.create_table('reminders_reminder', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('created_by', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
-            ('patient_name', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('patient_cell', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('appointment_date', self.gf('django.db.models.fields.DateField')()),
-            ('appointment_time', self.gf('django.db.models.fields.TimeField')()),
-            ('reminders', self.gf('reminderbin.apps.reminders.models.MultiSelectField')(max_length=250)),
+            ('appointment', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['reminders.Appointment'])),
+            ('date', self.gf('django.db.models.fields.DateField')()),
+            ('time', self.gf('django.db.models.fields.TimeField')()),
+            ('description', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
+            ('sms_status', self.gf('django.db.models.fields.IntegerField')(default=1)),
         ))
         db.send_create_signal('reminders', ['Reminder'])
 
     def backwards(self, orm):
+        # Deleting model 'Patient'
+        db.delete_table('reminders_patient')
+
+        # Deleting model 'MedicalProfessional'
+        db.delete_table('reminders_medicalprofessional')
+
+        # Deleting model 'Appointment'
+        db.delete_table('reminders_appointment')
+
         # Deleting model 'Reminder'
         db.delete_table('reminders_reminder')
 
@@ -61,15 +107,46 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        'reminders.reminder': {
-            'Meta': {'ordering': "['-appointment_date']", 'object_name': 'Reminder'},
-            'appointment_date': ('django.db.models.fields.DateField', [], {}),
-            'appointment_time': ('django.db.models.fields.TimeField', [], {}),
+        'reminders.appointment': {
+            'Meta': {'object_name': 'Appointment'},
+            'appointment_with': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['reminders.MedicalProfessional']"}),
+            'created_by': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
+            'date': ('django.db.models.fields.DateField', [], {}),
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'patient': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['reminders.Patient']"}),
+            'status': ('django.db.models.fields.IntegerField', [], {'default': '1'}),
+            'time': ('django.db.models.fields.TimeField', [], {})
+        },
+        'reminders.medicalprofessional': {
+            'Meta': {'object_name': 'MedicalProfessional'},
+            'cell': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
             'created_by': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'patient_cell': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'patient_name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'reminders': ('reminderbin.apps.reminders.models.MultiSelectField', [], {'max_length': '250'})
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'status': ('django.db.models.fields.IntegerField', [], {'default': '1'}),
+            'type': ('django.db.models.fields.IntegerField', [], {'default': '1'})
+        },
+        'reminders.patient': {
+            'Meta': {'object_name': 'Patient'},
+            'cell': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'consent_status': ('django.db.models.fields.IntegerField', [], {'default': '1'}),
+            'created_by': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
+            'created_on': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'notes': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
+            'status': ('django.db.models.fields.IntegerField', [], {'default': '1'})
+        },
+        'reminders.reminder': {
+            'Meta': {'ordering': "['-date']", 'object_name': 'Reminder'},
+            'appointment': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['reminders.Appointment']"}),
+            'created_by': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"}),
+            'date': ('django.db.models.fields.DateField', [], {}),
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'sms_status': ('django.db.models.fields.IntegerField', [], {'default': '1'}),
+            'time': ('django.db.models.fields.TimeField', [], {})
         }
     }
 

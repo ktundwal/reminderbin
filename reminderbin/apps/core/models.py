@@ -28,6 +28,7 @@ class UserProfile(models.Model):
 
     # Other fields here
     provider = models.CharField(max_length=40)
+    timezone = models.CharField(max_length=50, default='US/Mountain')
 
     def __unicode__(self):
         return " %s" % self.user
