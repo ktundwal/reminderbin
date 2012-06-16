@@ -8,21 +8,23 @@
     <thead><tr>
         <th width='20%'>Name</th>
         <th width='20%'>Cell phone</th>
-        <th width='30%'>Type</th>
+        <th width='30%'>Patients</th>
+        <th width='30%'>Appointments</th>
         <th width='30%'>Status</th>
     </tr></thead>
     <tbody>
     {% for medicalprofessional in medicalprofessional_list %}
     <tr>
-        <td><a href='edit/{{medicalprofessional.id}}'>{{ medicalprofessional.name }}</a></td>
-        <td>{{ medicalprofessional.cell }}</td>
-        <td>
+        <td><a href='edit/{{medicalprofessional.id}}'>{{ medicalprofessional.name }}, </a>
             {% for k, v in type_choices.items %}
             {% ifequal k|stringformat:"s" medicalprofessional.type|stringformat:"s" %}
             {{ v }}<br>
             {% endifequal %}
             {% endfor %}
         </td>
+        <td>{{ medicalprofessional.cell }}</td>
+        <td><a href="/reminders/recent-patients">All patients</a></td>
+        <td><a href="/reminders/recent-appointments">All appointments</a></td>
         <td>
             {% for k, v in status_choices.items %}
             {% ifequal k|stringformat:"s" medicalprofessional.status|stringformat:"s" %}

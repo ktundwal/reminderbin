@@ -8,9 +8,10 @@
     <thead><tr>
         <th width='20%'>Patient name</th>
         <th width='20%'>Cell phone</th>
-        <th width='30%'>Consent</th>
-        <th width='30%'>Status</th>
-        <th width='30%'>Notes</th>
+        <th width='10%'>Consent</th>
+        <th width='10%'>Status</th>
+        <th width='20%'>Appointments</th>
+        <th width='20%'>Notes</th>
     </tr></thead>
     <tbody>
     {% for patient in patient_list %}
@@ -31,6 +32,7 @@
             {% endifequal %}
             {% endfor %}
         </td>
+        <td><a href="/reminders/recent-appointments">All appointments</a></td>
         <td>{{ patient.notes }}</td>
     </tr>
     {% endfor %}
