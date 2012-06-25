@@ -26,6 +26,12 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
 
+def search(request):
+    query = request.GET['q']
+    return render_to_response('reminders/patient_search.html',
+            { 'query': query,
+              'results': Patient.objects.filter(cell__icontains=query) })
+
 @login_required
 def patients_index(request):
     return render_to_response('reminders/patient_index.html',
@@ -127,7 +133,6 @@ def recent_reminders(request):
 
 @login_required
 def reminders_index(request):
-    x = dict(REMINDER_CHOICES)
     return render_to_response('reminders/reminder_index.html',
             {'reminder_list': Reminder.objects.filter(created_by=request.user),
              'status_choices' : dict(Reminder.STATUS_CHOICES)},
@@ -140,18 +145,23 @@ def new_reminder(request, reminder_id = None):
         reminder = get_object_or_404(Reminder, id=reminder_id)
 
     if request.method == 'POST':
-        form = ReminderForm(data=request.POST, instance=reminder)
+        #form = ReminderForm(data=request.POST, instance=reminder)
+        form = AllInOneReminderForm(data=request.POST)
         if form.is_valid():
-            reminder = form.save(commit=False) # returns unsaved instance
-            reminder.created_by = request.user
-            reminder.save() # real save to DB.
-            messages.success(request, 'New reminder successfully added.')
+            #reminder = form.save(commit=False) # returns unsaved instance
+            #reminder.created_by = request.user
+            #reminder.save() # real save to DB.
+            #messages.success(request, 'New reminder successfully added.')
+            messages.success(request, 'FIXME: Nothing got saved.')
             return HttpResponseRedirect(reverse('reminders:recent-reminders'))
         else:
             messages.error(request, 'Reminder did not pass validation!')
     else:
-        form = ReminderForm(instance=reminder)
-    context = {'form': form,}
+        patient_form = PatientForm(instance=Patient(), prefix = "patient")
+        appointment_form = AppointmentForm(instance=Appointment(), prefix = "appointment")
+        reminder_form = ReminderForm(instance=Reminder(), prefix = "reminder")
+        #form = AllInOneReminderForm()
+    context = {'patient_form': patient_form, 'appointment_form': appointment_form, 'reminder_form': reminder_form}
     #return TemplateResponse(request, 'reminders/new_reminder.html', context)
     return render_to_response("reminders/new_reminder.html",
         context, context_instance=RequestContext(request))

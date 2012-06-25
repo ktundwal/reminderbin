@@ -1,8 +1,6 @@
 from django.template import loader, Context, Library
 
-
 register = Library()
-
 
 @register.simple_tag
 def bootstrap_field(field):

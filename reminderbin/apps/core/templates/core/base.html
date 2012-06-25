@@ -1,8 +1,4 @@
-{% load new_pin %}
 {% load new_reminder %}
-{% load new_patient %}
-{% load new_medicalprofessional %}
-{% load new_appointment %}
 
 <!DOCTYPE html>
 <html>
@@ -33,9 +29,11 @@
 
                 <ul class="nav pull-right">
                     {% if user.is_authenticated %}
+                        <!--
                         <li><a href="#new-patient" data-toggle="modal">New Patient</a></li>
                         <li><a href="#new-medicalprofessional" data-toggle="modal">New Medical Professional</a></li>
                         <li><a href="#new-appointment" data-toggle="modal">New Appointment</a></li>
+                        -->
                         <li><a href="#new-reminder" data-toggle="modal">New Reminder</a></li>
                         <li><a href="{% url core:logout %}">Logout {{ user.username }}</a></li>
                     {% else %}
@@ -69,12 +67,7 @@
 
         </div><!-- /container -->
 
-        {% new_pin %}
-
         {% new_reminder %}
-        {% new_patient %}
-        {% new_medicalprofessional %}
-        {% new_appointment %}
 
         {% if debug %}
             <script src="/static/vendor/jquery/1.7.2/jquery.js"></script>

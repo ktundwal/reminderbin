@@ -1,4 +1,4 @@
-<div class="control-group{% if field.errors %} error{% endif %}">
+{% for field in form %}
     <label class="control-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
     <div class="controls">
         {{ field }} <p class="help-block">{{ field.help_text }}</p>
@@ -12,4 +12,4 @@
             </span>
         {% endif %}
     </div>
-</div>
+{% endfor %}

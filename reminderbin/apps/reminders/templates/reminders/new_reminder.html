@@ -11,7 +11,17 @@
                 <h1>{% if instance %}New{% else %}Edit{% endif %} Reminder</h1>
                 <form action="" method="post" class="form-horizontal">
                     {% csrf_token %}
-                    {% for field in form %}
+                    {% for field in patient_form %}
+                        {% bootstrap_field field %}
+                    {% endfor %}
+                    <p>
+                        <input type="button" value="Request Consent" onclick="send_form();">
+                        <input type="button" value="Deactivate" onclick="send_form();">
+                    </p>
+                    {% for field in appointment_form %}
+                        {% bootstrap_field field %}
+                    {% endfor %}
+                    {% for field in reminder_form %}
                         {% bootstrap_field field %}
                     {% endfor %}
                     <div class="form-actions">

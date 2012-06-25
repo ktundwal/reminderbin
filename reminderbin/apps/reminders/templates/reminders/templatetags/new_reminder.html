@@ -1,3 +1,4 @@
+{% load bootstrap_form %}
 {% load bootstrap_field %}
 
 <div class="modal fade" id="new-reminder">
@@ -6,9 +7,32 @@
     </div>
     <form action="{% url reminders:new-reminder %}" method="post" class="form-horizontal">{% csrf_token %}
         <div class="modal-body">
-            {% for field in form %}
-                {% bootstrap_field field %}
-            {% endfor %}
+
+            <div class="control-group{% if field.errors %} error{% endif %}">
+                {% bootstrap_form patient_form %}
+
+                <div class="controls">
+                    <input id="button_request_consent_id" type="button" value="Request Consent" onclick="send_form();" class="btn disabled">
+                    <input id="button_deactivate_id" type="button" value="Deactivate" onclick="send_form();" class="btn disabled">
+                </div>
+            </div>
+
+            <div class="control-group{% if field.errors %} error{% endif %}">
+                {% bootstrap_form appointment_form %}
+
+                <div class="controls">
+                    <input id="button_reschedule_id" type="button" value="Reschedule" onclick="send_form();" class="btn disabled">
+                    <input id="button_cancel_id" type="button" value="Cancel" onclick="send_form();" class="btn disabled">
+                </div>
+            </div>
+
+            <div class="control-group{% if field.errors %} error{% endif %}">
+                {% bootstrap_form reminder_form %}
+
+                <div class="controls">
+                </div>
+            </div>
+
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-primary">{% if instance %}Update{% else %}Add{% endif %}</button>
