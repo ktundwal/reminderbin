@@ -14,7 +14,9 @@ __status__      = "Development"
 from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
 
+from datetime import datetime, timedelta
 
+from django.utils import timezone
 from django.template import RequestContext
 
 from django.template.response import TemplateResponse
@@ -26,18 +28,32 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
 
-def search(request):
-    query = request.GET['q']
+@login_required
+def patient_search(request):
+    query = request.GET.get('q', '')
+    results = []
+    if query:
+        results = Patient.objects.filter(cell__icontains=query)
     return render_to_response('reminders/patient_search.html',
             { 'query': query,
-              'results': Patient.objects.filter(cell__icontains=query) })
+              'results': results })
 
 @login_required
 def patients_index(request):
+
+    patient_form = PatientForm(instance=Patient(), prefix = "patient")
+    appointment_form = AppointmentForm(instance=Appointment(), prefix = "appointment")
+    reminder_form = ReminderForm(instance=Reminder(), prefix = "reminder")
+
     return render_to_response('reminders/patient_index.html',
             {'patient_list': Patient.objects.filter(created_by=request.user),
              'consent_choices' : dict(Patient.CONSENT_CHOICES),
-             'status_choices' : dict(Patient.STATUS_CHOICES)},
+             'patient_status_choices' : dict(Patient.STATUS_CHOICES),
+             'appointment_list': Appointment.objects.filter(created_by=request.user),
+             'appointment_status_choices' : dict(Appointment.STATUS_CHOICES),
+             'patient_form': patient_form,
+             'appointment_form': appointment_form,
+             'reminder_form': reminder_form,},
         context_instance=RequestContext(request))
 
 @login_required
@@ -144,24 +160,58 @@ def new_reminder(request, reminder_id = None):
     if reminder_id:
         reminder = get_object_or_404(Reminder, id=reminder_id)
 
-    if request.method == 'POST':
-        #form = ReminderForm(data=request.POST, instance=reminder)
-        form = AllInOneReminderForm(data=request.POST)
-        if form.is_valid():
-            #reminder = form.save(commit=False) # returns unsaved instance
-            #reminder.created_by = request.user
-            #reminder.save() # real save to DB.
-            #messages.success(request, 'New reminder successfully added.')
-            messages.success(request, 'FIXME: Nothing got saved.')
-            return HttpResponseRedirect(reverse('reminders:recent-reminders'))
+    if request.method == 'POST': #if the form has been submitted
+        patient_form = PatientForm(request.POST, prefix = "patient")
+        appointment_form = AppointmentForm(request.POST,  prefix = "appointment")
+
+        if patient_form.is_valid() and appointment_form.is_valid(): # All validation rules pass
+            print "all validation passed"
+
+            patient = patient_form.save(commit=False)
+            patient.created_by = request.user
+            patient.save() # real save to DB.
+
+            appointment_form.cleaned_data["patient"] = patient
+            appointment = appointment_form.save(commit=False)
+            appointment.patient = patient
+            appointment.save() # real save to DB.
+
+            # FIXME: create reminder objects based on reminder_form.cleaned_data["reminder"]
+            # It returns list [u'0', u'2', u'12', u'24']
+
+            #user_tz = request.user.get_profile().timezone
+            #timezone.activate(user_tz)
+
+            appointment_datetime = appointment_form.cleaned_data["when"]
+
+            for hours_before in appointment_form.cleaned_data["reminders"]:
+                if u'12' == hours_before:
+                    # special case, this means 7pm yesterday
+                    day_before_appointment = appointment_datetime - timedelta(1)
+                    reminder_time = day_before_appointment.replace(hour=17, minute=0, second=0, microsecond=0)
+                else:
+                    reminder_time = appointment_datetime - timedelta(hours=int(hours_before))
+
+                reminder = Reminder()
+                reminder.appointment = appointment
+                reminder.when = reminder_time
+                reminder_choice_dict = dict(AppointmentForm.REMINDER_CHOICES)
+                reminder.description = reminder_choice_dict[int(hours_before)]
+                reminder.save() # real save to DB.
+
+            messages.success(request, 'Saved.')
+            return HttpResponseRedirect(reverse('reminders:new-reminder'))
         else:
             messages.error(request, 'Reminder did not pass validation!')
     else:
-        patient_form = PatientForm(instance=Patient(), prefix = "patient")
-        appointment_form = AppointmentForm(instance=Appointment(), prefix = "appointment")
-        reminder_form = ReminderForm(instance=Reminder(), prefix = "reminder")
-        #form = AllInOneReminderForm()
-    context = {'patient_form': patient_form, 'appointment_form': appointment_form, 'reminder_form': reminder_form}
+        patient_form = PatientForm(prefix = "patient")
+        appointment_form = AppointmentForm(prefix = "appointment")
+    context = {
+        'patient_form': patient_form,
+        'appointment_form': appointment_form,
+        #'reminder_list': Reminder.objects.filter(created_by=request.user),
+        'patient_list': Patient.objects.filter(created_by=request.user),
+        }
     #return TemplateResponse(request, 'reminders/new_reminder.html', context)
     return render_to_response("reminders/new_reminder.html",
         context, context_instance=RequestContext(request))

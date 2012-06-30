@@ -44,15 +44,36 @@ class MedicalProfessionalForm(forms.ModelForm):
 
 class AppointmentForm(forms.ModelForm):
 
-    date = forms.DateField(required=True, label='Appointment date',)
-    date.widget.attrs = {'class':'datePicker', 'readonly':'true',}
-    time = forms.TimeField(required=True, label='Appointment time',
-        input_formats=['%I:%M %p'],
-        help_text="Changing date and time will recalculate reminder date and time")
-    time.widget.attrs = {'class':'timePicker'}
+    #date = forms.DateField(required=True, label='Appointment date',)
+    #date.widget.attrs = {'class':'datePicker', 'readonly':'true',}
+    #time = forms.TimeField(required=True, label='Appointment time',
+    #    input_formats=['%I:%M %p'],
+    #    help_text="Changing date and time will recalculate reminder date and time")
+    #time.widget.attrs = {'class':'timePicker'}
+
+    when = forms.SplitDateTimeField(
+        required=True,
+        label='Appointment time',
+        #input_date_formats=None,
+        input_time_formats=['%I:%M %p'],
+        widget=MySplitDateTimeWidget(
+            attrs={'date_class' : 'datePicker', 'time_class' : 'timePicker'},
+            date_format='%m/%d/%Y',
+            time_format='%I:%M %p'))
 
     #status = forms.ChoiceField(choices=Appointment.STATUS_CHOICES,
     #    help_text="Selecting 'Cancel' will delete all remaining reminders.")
+
+    REMINDER_CHOICES = (
+        (0, u'Now'),
+        (2, u'2 hrs in advance'),
+        (12, u'Night before'),
+        (24, u'24 hrs in advance'),
+        )
+
+    reminders = forms.MultipleChoiceField(choices=REMINDER_CHOICES,
+        widget=forms.CheckboxSelectMultiple(),
+        help_text="'Night before' SMS are sent @ 7pm local time")
 
     class Meta:
         model = Appointment

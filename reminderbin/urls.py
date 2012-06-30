@@ -5,6 +5,9 @@ from django.conf import settings
 from django.contrib import admin
 admin.autodiscover()
 
+from dajaxice.core import dajaxice_autodiscover
+dajaxice_autodiscover()
+
 message = """
 Hello, Reminderbin users! This is just a dummy response from twilio library.
 """
@@ -36,4 +39,6 @@ urlpatterns = patterns('',
 
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
             {'document_root': settings.STATIC_ROOT}),
+
+    url(r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls')),
 )

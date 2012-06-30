@@ -14,13 +14,6 @@ __status__      = "Development"
 from django.db import models
 from django.contrib.auth.models import User
 
-REMINDER_CHOICES = (
-    (0, u'Now'),
-    (2, u'2 hrs in advance'),
-    (12, u'Night before'),
-    (24, u'24 hrs in advance'),
-)
-
 class Patient(models.Model):
 
     created_by = models.ForeignKey(User)
@@ -54,7 +47,7 @@ class Patient(models.Model):
     notes = models.CharField(max_length=200, blank=True, null=True)
 
     def __unicode__(self):
-        return '%s (%s)' % (self.name, self.cell)
+        return '%s (%s)' % (self.cell, self.name)
 
 class MedicalProfessional(models.Model):
     created_by = models.ForeignKey(User)
@@ -86,14 +79,11 @@ class MedicalProfessional(models.Model):
         return '%s (%s), %s' % (self.name, self.cell, self.TYPE_CHOICES[self.type][1])
 
 class Appointment(models.Model):
-    created_by = models.ForeignKey(User)
 
-    patient = models.ForeignKey(Patient)
-    appointment_with = models.ForeignKey(MedicalProfessional)
+    patient = models.ForeignKey(Patient, related_name='appointments')
 
-    date = models.DateField()   # UTC
-    time = models.TimeField()   # UTC
-    description = models.CharField(max_length=200, blank=True, null=True)  # ex: Blood work
+    when = models.DateTimeField(blank=True)   # UTC
+    description = models.CharField(max_length=200, blank=True)  # ex: Blood work
 
     SCHEDULED_STATUS = 1
     CANCELLED_STATUS = 2
@@ -107,13 +97,11 @@ class Appointment(models.Model):
     status = models.IntegerField(choices=STATUS_CHOICES, default=SCHEDULED_STATUS)
 
     def __unicode__(self):
-        return '%s (%s) with %s at %s %s' % (self.patient.name, self.patient.cell,
-                                             self.appointment_with.name, self.date, self.time)
+        return '%s (%s) at %s' % (self.patient.cell, self.patient.name, self.when)
 
 class Reminder(models.Model):
 
-    created_by = models.ForeignKey(User)
-    appointment = models.ForeignKey(Appointment)
+    appointment = models.ForeignKey(Appointment, related_name='reminders')
 
     PENDING_STATUS = 1
     DELIVERED_STATUS = 2
@@ -128,14 +116,14 @@ class Reminder(models.Model):
     #reminders = models.IntegerField(choices=REMINDER_CHOICES)
     #reminders = MultiSelectField(max_length=250, blank=False, choices=REMINDER_CHOICES)
 
-    date = models.DateField()   # UTC
-    time = models.TimeField()   # UTC
-    description = models.CharField(max_length=200, blank=True, null=True)  # ex: 2 hrs in advance | Now
+    when = models.DateTimeField(blank=False)   # UTC
+
+    description = models.CharField(max_length=200, blank=True)  # ex: 2 hrs in advance | Now
 
     sms_status = models.IntegerField(choices=STATUS_CHOICES, default=PENDING_STATUS)
 
     def __unicode__(self):
-        return '%s %s %s' % (self.appointment.patient.cell, self.date, self.time)
+        return '%s %s' % (self.appointment.patient.cell, self.when)
 
     class Meta:
-        ordering = ['-date']
+        ordering = ['-when']

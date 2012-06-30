@@ -16,13 +16,14 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = patterns('reminderbin.apps.reminders.views',
 
-    # url(r'^patient-search/$', 'patient_search', name='patient-search'),
+    url(r'^patient-search/$', 'patient_search', name='patient-search'),
+    #url(r'^patient-detail/$', 'patient_detail', name='patient-detail'),
 
-    url(r'^$', 'reminders_index', name='recent-reminders'),
+    url(r'^recent-reminders/$', 'reminders_index', name='recent-reminders'),
     url(r'^new-reminder/$', 'new_reminder', name='new-reminder'),
     url(r'^edit/(?P<reminder_id>\d+)', 'new_reminder', name='edit-reminder'),
 
-    url(r'^recent-patients$', 'patients_index', name='recent-patients'),
+    url(r'^$', 'patients_index', name='recent-patients'),
     url(r'^new-patient/$', 'new_patient', name='new-patient'),
     url(r'^edit/(?P<patient_id>\d+)', 'new_patient', name='edit-patient'),
 

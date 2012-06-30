@@ -10,7 +10,7 @@ from reminderbin import settings
 
 def home(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('reminders:recent-reminders'))
+        return HttpResponseRedirect(reverse('reminders:recent-patients'))
     else:
         return TemplateResponse(request, 'core/home.html', {})
 

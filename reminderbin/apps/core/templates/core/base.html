@@ -1,4 +1,5 @@
 {% load new_reminder %}
+{% load dajaxice_templatetags %}
 
 <!DOCTYPE html>
 <html>
@@ -21,6 +22,8 @@
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Righteous">
 
         <link rel="stylesheet" href="/static/core/css/reminderpin.css">
+
+        {% dajaxice_js_import %}
     </head>
     <body>
         <div class="navbar navbar-fixed-top">
@@ -95,6 +98,15 @@
                 $( ".datePicker" ).datepicker();
                 $( ".timePicker" ).timepicker();
             });
+
+            function my_js_callback(data){
+                if(data==Dajaxice.EXCEPTION){
+                    alert('Error! Something happens!');
+                }
+                else{
+                    alert(data.message);
+                }
+            }
         </script>
     </body>
 </html>

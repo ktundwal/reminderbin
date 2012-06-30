@@ -97,3 +97,14 @@ class MultiSelectField(models.Field):
     def value_to_string(self, obj):
         value = self._get_val_from_obj(obj)
         return self.get_db_prep_value(value)
+
+class MySplitDateTimeWidget(forms.SplitDateTimeWidget):
+    def __init__(self, attrs=None, date_format=None, time_format=None):
+        date_class = attrs.get('date_class')
+        del attrs['date_class']
+
+        time_class = attrs.get('time_class')
+        del attrs['time_class']
+        widgets = (forms.DateInput(attrs={'class' : date_class}, format=date_format),
+                   forms.TimeInput(attrs={'class' : time_class}, format=time_format))
+        super(forms.SplitDateTimeWidget, self).__init__(widgets, attrs)

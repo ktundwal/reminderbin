@@ -84,7 +84,7 @@ SECRET_KEY = '2w__$!-o53-@^2c-=_wx@jd=oupq%v&amp;$--jm=6^ut0l*qthy@q'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -145,6 +145,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'reminder',
+    'dajaxice',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -154,6 +155,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.static",
     "django.core.context_processors.request",
+    "django.contrib.messages.context_processors.messages",
 )
 
 # django-registration
@@ -198,3 +200,5 @@ LOGGING = {
 BROKER_BACKEND = 'django'
 
 #AUTH_PROFILE_MODULE = 'reminder.Provider'
+
+DAJAXICE_MEDIA_PREFIX="dajaxice"
