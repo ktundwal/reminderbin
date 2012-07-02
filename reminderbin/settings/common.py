@@ -133,7 +133,7 @@ INSTALLED_APPS = (
     'reminderbin.apps.pins',
     'reminderbin.apps.reminders',
     'reminderbin.apps.api',
-    'registration',
+    #'registration',
     'djcelery',
     'django.contrib.humanize',
     # 'indexer',
@@ -145,7 +145,6 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    'reminder',
     'dajaxice',
 )
 
@@ -203,3 +202,5 @@ BROKER_BACKEND = 'django'
 #AUTH_PROFILE_MODULE = 'reminder.Provider'
 
 DAJAXICE_MEDIA_PREFIX="dajaxice"
+
+LOGIN_URL = "/login/"

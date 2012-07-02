@@ -16,7 +16,7 @@
                         {% bootstrap_field field %}
                     {% endfor %}
                     <div class="form-actions">
-                        <input type="hidden" name="next" value="{% url reminders:new-reminder %}" />
+                        <input type="hidden" name="next" value="{% url reminders:home %}" />
                         <button type="submit" class="btn btn-primary">Login</button>
                         <a href="{% url core:home %}" class="btn">Cancel</a>
                     </div>

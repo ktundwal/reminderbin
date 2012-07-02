@@ -82,7 +82,7 @@ class Appointment(models.Model):
 
     patient = models.ForeignKey(Patient, related_name='appointments')
 
-    when = models.DateTimeField(blank=True)   # UTC
+    when = models.DateTimeField(blank=False)   # UTC
     description = models.CharField(max_length=200, blank=True)  # ex: Blood work
 
     SCHEDULED_STATUS = 1
@@ -102,6 +102,7 @@ class Appointment(models.Model):
 class Reminder(models.Model):
 
     appointment = models.ForeignKey(Appointment, related_name='reminders')
+    time_delta = models.IntegerField(blank=False)
 
     PENDING_STATUS = 1
     DELIVERED_STATUS = 2

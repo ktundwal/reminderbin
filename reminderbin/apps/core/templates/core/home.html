@@ -31,7 +31,7 @@
                 <ul class="nav pull-right">
                     {% if user.is_authenticated %}
                     <li><a href="#new-pin" data-toggle="modal">New Pin</a></li>
-                    <li><a href="#new-reminder" data-toggle="modal">New Reminder</a></li>
+                    <li><a href="#home" data-toggle="modal">New Reminder</a></li>
                     <li><a href="{% url core:logout %}">Logout {{ user.username }}</a></li>
                     {% else %}
                     <li><a href="{% url core:login %}">Login</a></li>

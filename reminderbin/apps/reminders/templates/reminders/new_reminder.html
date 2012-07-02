@@ -26,7 +26,7 @@
                     <input id="user_tz_hidden_field" type="hidden" name="user_tz"/>
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary"
-                                onclick="document.getElementById('user_tz_hidden_field').value = getTimezoneName(); this.form.submit();">Create Reminders</button>
+                                onclick="document.getElementById('user_tz_hidden_field').value = getTimezoneName(); this.form.submit();">{% if instance %}Update{% else %}Create{% endif %} Reminders</button>
                     </div>
                 </form>
             </div>
@@ -41,8 +41,8 @@
                     {% for patient in patient_list %}
                         {% for appointment in patient.appointments.all %}
                             <tr>
-                                <td><a href='edit/{{ patient.id }}'>{{ patient.cell }} <br>({{ patient.name }})</a></td>
-                                <td><a href='edit/{{appointment.id}}'>{{ appointment.when|date:"F j, Y H:i" }}</a></td>
+                                <td>{{ patient.cell }} <br>({{ patient.name }})</td>
+                                <td><a href='/reminders/home/{{appointment.id}}'>{{ appointment.when|date:"F j, Y H:i" }}</a></td>
                                 <td>
                                     {% for reminder in appointment.reminders.all %}
                                         {% if reminder.appointment.id == appointment.id %}
