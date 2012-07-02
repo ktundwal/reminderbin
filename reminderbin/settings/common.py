@@ -21,7 +21,7 @@ TWILIO_CALLER_ID   = '+13036471071'
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'US/Mountain'
+#TIME_ZONE = 'US/Mountain'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -95,6 +95,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'reminderbin.apps.core.middleware.TimezoneMiddleware',
 )
 
 ROOT_URLCONF = 'reminderbin.urls'

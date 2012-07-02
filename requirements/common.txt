@@ -12,4 +12,5 @@ Fabric==1.4.1
 South==0.7.4
 django-sentry
 django-registration
+pytz
 git+https://github.com/rdegges/django-twilio.git#egg=django_twilio

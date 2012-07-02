@@ -25,6 +25,8 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+
 from .forms import *
 from .models import *
 
@@ -154,6 +156,24 @@ def reminders_index(request):
              'status_choices' : dict(Reminder.STATUS_CHOICES)},
             context_instance=RequestContext(request))
 
+
+def create_or_get_patient(user, patient_obj_from_form):
+    patient = None
+    try:
+        patient_from_db = Patient.objects.get(cell=patient_obj_from_form.cell)
+        patient = patient_from_db
+    except ObjectDoesNotExist:    # this is the first time. create patient
+        patient_obj_from_form.created_by = user
+        patient_obj_from_form.save() # real save to DB.
+        patient = patient_obj_from_form
+    except MultipleObjectsReturned: # we found more than 1,  return first one
+        patients_from_db = Patient.objects.filter(cell=patient_obj_from_form.cell)
+        if patients_from_db.count() > 0:
+            patient = patients_from_db[0]
+
+    return patient
+
+
 @login_required
 def new_reminder(request, reminder_id = None):
     reminder = None
@@ -167,9 +187,9 @@ def new_reminder(request, reminder_id = None):
         if patient_form.is_valid() and appointment_form.is_valid(): # All validation rules pass
             print "all validation passed"
 
-            patient = patient_form.save(commit=False)
-            patient.created_by = request.user
-            patient.save() # real save to DB.
+            patient = create_or_get_patient(request.user, patient_form.save(commit=False))
+
+
 
             appointment_form.cleaned_data["patient"] = patient
             appointment = appointment_form.save(commit=False)
@@ -179,8 +199,7 @@ def new_reminder(request, reminder_id = None):
             # FIXME: create reminder objects based on reminder_form.cleaned_data["reminder"]
             # It returns list [u'0', u'2', u'12', u'24']
 
-            #user_tz = request.user.get_profile().timezone
-            #timezone.activate(user_tz)
+            current_tz = timezone.get_current_timezone_name()
 
             appointment_datetime = appointment_form.cleaned_data["when"]
 

@@ -36,8 +36,8 @@
                         <li><a href="#new-patient" data-toggle="modal">New Patient</a></li>
                         <li><a href="#new-medicalprofessional" data-toggle="modal">New Medical Professional</a></li>
                         <li><a href="#new-appointment" data-toggle="modal">New Appointment</a></li>
-                        -->
                         <li><a href="#new-reminder" data-toggle="modal">New Reminder</a></li>
+                        -->
                         <li><a href="{% url core:logout %}">Logout {{ user.username }}</a></li>
                     {% else %}
                         <li><a href="{% url core:login %}">Login</a></li>
@@ -65,7 +65,7 @@
             ================================================== -->
             <footer class="footer">
                 <p class="pull-right"><a href="#">Back to top</a></p>
-                &copy; Indraworks 2012. Designed and developed in Denver, Colorado
+                &copy; Indraworks 2012. Designed and developed in Denver, Colorado <div id="user_time"></div>
             </footer>
 
         </div><!-- /container -->

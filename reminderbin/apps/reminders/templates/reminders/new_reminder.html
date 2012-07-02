@@ -10,7 +10,7 @@
         <div class="row-fluid show-grid" >
             <div class="span6 " id="form">
 
-                <form action="" method="post" class="form-horizontal">
+                <form id="new_reminder_form_id" action="" method="post" class="form-horizontal">
                     {% csrf_token %}
                     <div class="control-group{% if field.errors %} error{% endif %}">
                         {% bootstrap_form patient_form %}
@@ -23,8 +23,10 @@
                     <div class="control-group{% if field.errors %} error{% endif %}">
                         {% bootstrap_form reminder_form %}
                     </div>
+                    <input id="user_tz_hidden_field" type="hidden" name="user_tz"/>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">Create Reminders</button>
+                        <button type="submit" class="btn btn-primary"
+                                onclick="document.getElementById('user_tz_hidden_field').value = getTimezoneName(); this.form.submit();">Create Reminders</button>
                     </div>
                 </form>
             </div>
