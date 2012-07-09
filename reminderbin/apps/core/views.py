@@ -8,10 +8,13 @@ from reminderbin.apps.core.forms import UserCreationFormWithEmail
 from django.core.mail import send_mail
 from reminderbin import settings
 
+from reminderbin.apps.core.utils import *
+
 def home(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse('reminders:home'))
     else:
+        logger.info("Anonymous user")
         return TemplateResponse(request, 'core/home.html', {})
 
 
@@ -23,6 +26,7 @@ def register(request):
             messages.success(request, 'Thank you for registering, you can now '
                                       'login.')
             send_invite_email(form.data['username'], form.data['email'])
+            logger.info('New user %s' % form.data['email'])
             return HttpResponseRedirect(reverse('core:login'))
     else:
         form = UserCreationFormWithEmail()
@@ -42,6 +46,9 @@ def send_invite_email(recipient_name, recipient_email):
     It uses Django's send_mail() method, which sends e-mail by using the server
     and credentials in the settings files.
     '''
-    subject = 'Thanks for signing up at reminderBin'
-    body = ('Welcome ' + recipient_name + ', Please login at http://reminderbin.herokuapp.com/login with your username and password. Do let us know if you run into a bug. Thx -Kapil @ reminderBin')
-    send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [recipient_email])
+    try:
+        subject = 'Thanks for signing up at reminderBin'
+        body = ('Welcome ' + recipient_name + ', Please login at http://reminderbin.herokuapp.com/login with your username and password. Do let us know if you run into a bug. Thx -Kapil @ reminderBin')
+        send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [recipient_email])
+    except Exception, e:
+        log_exception(logger, 'unable to send welcome email')
