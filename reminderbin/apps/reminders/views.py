@@ -28,6 +28,12 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from reminderbin.apps.core.utils import *
 
+from twilio import twiml
+from twilio import TwilioRestException
+from twilio.rest import TwilioRestClient
+
+import reminderbin
+
 from .forms import *
 from .models import *
 
@@ -174,6 +180,17 @@ def create_or_get_patient(user, patient_obj_from_form):
 
     return patient
 
+def send_sms(phone, name, msg):
+    try:
+        client = TwilioRestClient(
+            reminderbin.settings.TWILIO_ACCOUNT_SID,
+            reminderbin.settings.TWILIO_AUTH_TOKEN)
+        message = client.sms.messages.create(to=phone,
+            from_=reminderbin.settings.TWILIO_CALLER_ID,
+            body=name + ', ' + msg)
+        logger.info('Sent SMS - %s - to %s. Response - %s' % (msg,phone,message))
+    except TwilioRestException,te:
+        log_exception('Unable to send SMS message!')
 
 @login_required
 def home(request, appointment_id = None):
@@ -204,6 +221,9 @@ def home(request, appointment_id = None):
                     # special case, this means 7pm yesterday
                     day_before_appointment = appointment_datetime - timedelta(1)
                     reminder_time = day_before_appointment.replace(hour=17, minute=0, second=0, microsecond=0)
+                if u'0' == hours_before:
+                    send_sms(patient.cell, patient.name, 'Appointment reminder. -TXT4HLTH')
+                    reminder_time = appointment_datetime - timedelta(hours=int(hours_before))
                 else:
                     reminder_time = appointment_datetime - timedelta(hours=int(hours_before))
 

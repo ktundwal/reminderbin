@@ -149,6 +149,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'dajaxice',
+    'django_twilio',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -239,3 +240,8 @@ BROKER_BACKEND = 'django'
 DAJAXICE_MEDIA_PREFIX="dajaxice"
 
 LOGIN_URL = "/login/"
+
+# put your Twilio API credentials here
+TWILIO_ACCOUNT_SID = 'AC0a2c5f7bdebd40068d8d93513a114938' # Nim's
+TWILIO_AUTH_TOKEN  = 'd1d96adbab6d81b5a8b265f1668047da'
+TWILIO_CALLER_ID   = '+13036471071'
