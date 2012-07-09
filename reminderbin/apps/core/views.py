@@ -47,7 +47,7 @@ def send_invite_email(recipient_name, recipient_email):
     and credentials in the settings files.
     '''
     try:
-        subject = 'Thanks for signing up at reminderBin'
+        subject = 'Thanks for signing up at TXT4HLTH'
         body = ('Welcome ' + recipient_name + ', Please login at http://reminderbin.herokuapp.com/login with your username and password. Do let us know if you run into a bug. Thx -Kapil @ reminderBin')
         send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [recipient_email])
     except Exception, e:
