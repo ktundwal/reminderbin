@@ -129,9 +129,12 @@ INSTALLED_APPS = (
 
     'kombu.transport.django',
     'reminderbin.apps.vendor',
-    'reminderbin.apps.core',
+
     'reminderbin.apps.pins',
+
+    'reminderbin.apps.core',
     'reminderbin.apps.reminders',
+
     'reminderbin.apps.api',
     #'registration',
     'djcelery',
