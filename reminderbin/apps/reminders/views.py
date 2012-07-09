@@ -221,7 +221,9 @@ def home(request, appointment_id = None):
     else:
         if appointment:
             patient_form = PatientForm(instance=appointment.patient, prefix = "patient")
-            appointment_form = AppointmentForm(instance=appointment, prefix = "appointment")
+            appointment_form = AppointmentForm(instance=appointment,
+                initial={'reminders': [reminder.time_delta for reminder in appointment.reminders.all()]},
+                prefix = "appointment")
         else:
             patient_form = PatientForm(prefix = "patient")
             appointment_form = AppointmentForm(prefix = "appointment")
