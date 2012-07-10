@@ -38,17 +38,50 @@
                         <th width='30%'>Reminder</th>
                     </tr></thead>
                     <tbody>
+                    {% if patient_list %}
+                        Number of patients: {{ patient_list|length }}
+                    {% else %}
+                        No patients.
+                    {% endif %}
+
                     {% for patient in patient_list %}
+                        {% if patient.appointments.all %}
+                            Number of appointments: {{ patient.appointments.all|length }}
+                        {% else %}
+                            No appointments.
+                        {% endif %}
+
                         {% for appointment in patient.appointments.all %}
                             <tr>
                                 <td>{{ patient.cell }} <br>({{ patient.name }})</td>
                                 <td><a href='/reminders/home/{{appointment.id}}'>{{ appointment.when|date:"F j, Y H:i" }}</a></td>
                                 <td>
+                                    {% if appointment.reminders.all %}
+                                        Number of reminders: {{ appointment.reminders.all|length }}
+                                    {% else %}
+                                        No reminders.
+                                    {% endif %}
+                                    <ul>
                                     {% for reminder in appointment.reminders.all %}
                                         {% if reminder.appointment.id == appointment.id %}
-                                            {{ reminder.description }}, (Pending)
+                                            <li>
+                                            {% for k, v in reminder_choices.items %}
+                                            {% ifequal k|stringformat:"s" reminder.time_delta|stringformat:"s" %}
+                                            {% if reminder.sms_status == 2 %} <del>{{ v }}</del> {% else %} {{ v }} {% endif %} <br>
+                                            {% endifequal %}
+                                            {% endfor %}
+
+                                            {% comment %}
+                                                {% for k, v in sms_status_choices.items %}
+                                                {% ifequal k|stringformat:"s" reminder.sms_status|stringformat:"s" %}
+                                                ({{ v }})<br>
+                                                {% endifequal %}
+                                                {% endfor %}
+                                            {% endcomment %}
+                                            </li>
                                         {% endif %}
                                     {% endfor %}
+                                    </ul>
                                 </td>
                             </tr>
                         {% endfor %}

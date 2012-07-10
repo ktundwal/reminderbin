@@ -221,18 +221,21 @@ def home(request, appointment_id = None):
                     # special case, this means 7pm yesterday
                     day_before_appointment = appointment_datetime - timedelta(1)
                     reminder_time = day_before_appointment.replace(hour=17, minute=0, second=0, microsecond=0)
-                if u'0' == hours_before:
-                    send_sms(patient.cell, patient.name, 'Appointment reminder. -TXT4HLTH')
-                    reminder_time = appointment_datetime - timedelta(hours=int(hours_before))
                 else:
                     reminder_time = appointment_datetime - timedelta(hours=int(hours_before))
 
                 reminder = Reminder()
                 reminder.appointment = appointment
                 reminder.when = reminder_time
+
                 #reminder_choice_dict = dict(AppointmentForm.REMINDER_CHOICES)
                 #reminder.description = reminder_choice_dict[int(hours_before)]
                 reminder.time_delta = int(hours_before)
+
+                if u'0' == hours_before:
+                    send_sms(patient.cell, patient.name, 'Appointment reminder. -TXT4HLTH')
+                    reminder.sms_status = Reminder.DELIVERED_STATUS
+
                 reminder.save() # real save to DB.
 
             messages.success(request, 'Saved.')
@@ -254,6 +257,7 @@ def home(request, appointment_id = None):
         #'reminder_list': Reminder.objects.filter(created_by=request.user),
         'patient_list': Patient.objects.filter(created_by=request.user),
         'reminder_choices': dict(AppointmentForm.REMINDER_CHOICES),
+        'sms_status_choices': dict(Reminder.STATUS_CHOICES),
         }
     #return TemplateResponse(request, 'reminders/new_reminder.html', context)
     return render_to_response("reminders/new_reminder.html",
