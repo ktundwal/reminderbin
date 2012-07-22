@@ -27,7 +27,7 @@ def log_exception(logger, message=''):
     lines.append(message)
     logger.error(''.join('!! ' + line for line in lines))  # Log it or whatever here
 
-@periodic_task(run_every=timedelta(minutes=15))
+@periodic_task(run_every=timedelta(minutes=1))
 def send_all_pending_sms():
     try:
         task_logger = send_all_pending_sms.get_logger()
