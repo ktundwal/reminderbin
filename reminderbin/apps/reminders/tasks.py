@@ -20,7 +20,7 @@ def send_all_pending_sms():
     try:
         logger.info("********* Current UTC Time = %s *********" % timezone.now())
         for reminder in Reminder.objects.all():
-            logger.info("    Reminder: %s at %s status = " % (reminder.appointment.patient.cell, reminder.when, reminder.sms_status))
+            logger.info("    Reminder: %s at %s status = %d" % (reminder.appointment.patient.cell, reminder.when, reminder.sms_status))
         pending_reminders = [reminder for reminder in Reminder.objects.all()
                              if reminder.when < timezone.now()
         and reminder.sms_status is not Reminder.DELIVERED_STATUS]
