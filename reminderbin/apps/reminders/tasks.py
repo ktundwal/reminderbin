@@ -15,7 +15,7 @@ from reminderbin.apps.core.utils import *
 # Run this
 # python manage.py celeryd -E -B --loglevel=INFO
 
-@periodic_task(run_every=timedelta(minutes=15))
+@periodic_task(run_every=timedelta(minutes=1))
 def send_all_pending_sms():
     try:
         pending_reminders = [reminder for reminder in Reminder.objects.all()
