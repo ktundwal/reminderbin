@@ -24,9 +24,15 @@
                         {% bootstrap_form reminder_form %}
                     </div>
                     <input id="user_tz_hidden_field" type="hidden" name="user_tz"/>
-                    <div class="form-actions">
+                    <div class="form-actions btn-group">
+                        {% if patient_form.instance.id %}
+                            <button type="submit" class="btn btn-primary"
+                                onclick="document.getElementById('user_tz_hidden_field').value = getTimezoneName(); this.form.submit();">Update Reminders</button>
+                            <input type="reset" class='btn' value="Reset form" />
+                        {% else %}
                         <button type="submit" class="btn btn-primary"
-                                onclick="document.getElementById('user_tz_hidden_field').value = getTimezoneName(); this.form.submit();">{% if instance %}Update{% else %}Create{% endif %} Reminders</button>
+                                onclick="document.getElementById('user_tz_hidden_field').value = getTimezoneName(); this.form.submit();">New Reminders</button>
+                        {% endif %}
                     </div>
                 </form>
             </div>
