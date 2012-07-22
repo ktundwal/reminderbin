@@ -18,9 +18,13 @@ from reminderbin.apps.core.utils import *
 @periodic_task(run_every=timedelta(minutes=1))
 def send_all_pending_sms():
     try:
+        logger.info("********* Current UTC Time = %s *********" % timezone.now())
+        for reminder in Reminder.objects.all():
+            logger.info("    Reminder: %s at %s status = " % (reminder.appointment.patient.cell, reminder.when, reminder.sms_status))
         pending_reminders = [reminder for reminder in Reminder.objects.all()
                              if reminder.when < timezone.now()
         and reminder.sms_status is not Reminder.DELIVERED_STATUS]
+        logger.info("    Due reminders = %d" % len(pending_reminders))
         for pending_reminder in pending_reminders:
             try:
                 send_sms(pending_reminder.appointment.patient.cell,
@@ -32,7 +36,7 @@ def send_all_pending_sms():
                 log_exception("Exception while sending sms to %s" % pending_reminder.appointment.patient.cell)
             except Exception, e:
                 log_exception("Exception while sending sms to %s" % pending_reminder.appointment.patient.cell)
-            logger.info("Sent reminder to %s" % pending_reminder.appointment.patient.cell)
+            logger.info("    Sent reminder to %s" % pending_reminder.appointment.patient.cell)
     except Exception, e:
         log_exception("Exception while executing send_all_pending_sms task asynchronously. %s" % e)
         raise e
