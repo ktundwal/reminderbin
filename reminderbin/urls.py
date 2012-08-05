@@ -14,6 +14,7 @@ Hello, Reminderbin users! This is just a dummy response from twilio library.
 
 urlpatterns = patterns('',
     url(r'', include('reminderbin.apps.core.urls', namespace='core')),
+    url(r'^survey/', include('reminderbin.apps.survey.urls', namespace='survey')),
     url(r'^reminders/', include('reminderbin.apps.reminders.urls', namespace='reminders')),
     url(r'^pins/', include('reminderbin.apps.pins.urls', namespace='pins')),
     url(r'^api/', include('reminderbin.apps.api.urls', namespace='api')),

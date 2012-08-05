@@ -135,6 +135,8 @@ INSTALLED_APPS = (
     'reminderbin.apps.core',
     'reminderbin.apps.reminders',
 
+    'reminderbin.apps.survey',
+
     'reminderbin.apps.api',
     #'registration',
     'djcelery',
