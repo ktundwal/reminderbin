@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.http import Http404
 from django.core.exceptions import ObjectDoesNotExist
+from reminderbin.settings.common import *
 
 from models import *
 import forms
@@ -37,7 +38,7 @@ def question(request, slug):
         except KeyError, e:
             last_choice = 0
         choices = Choice.objects.filter(question = question)
-        payload = {'question':question, 'choices':choices, 'last_choice':last_choice}
+        payload = {'question':question, 'choices':choices, 'last_choice':last_choice, 'sms_to':TWILIO_CALLER_ID}
 
         return render('survey/question.html', payload, request)
 

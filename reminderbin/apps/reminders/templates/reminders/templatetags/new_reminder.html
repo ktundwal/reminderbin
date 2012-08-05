@@ -2,19 +2,6 @@
 {% load bootstrap_field %}
 {% load dajaxice_templatetags %}
 
-{% dajaxice_js_import %}
-
-<script language="JavaScript">
-    function my_js_callback(data){
-        if(data==Dajaxice.EXCEPTION){
-            alert('Error! Something happens!');
-        }
-        else{
-            alert(data.message);
-        }
-    }
-</script>
-
 <div class="modal fade" id="new-reminder">
     <div class="modal-header">
         <h3>{% if instance %}Update{% else %}Add{% endif %} Reminder</h3>
@@ -35,8 +22,8 @@
                 {% bootstrap_form appointment_form %}
 
                 <div class="controls">
-                    <input id="button_reschedule_id" type="button" value="Reschedule" onclick="Dajaxice.example.myexample(my_js_callback);" class="btn ">
-                    <input id="button_cancel_id" type="button" value="Cancel" onclick="Dajaxice.example.myexample(my_js_callback);" class="btn ">
+                    <input id="button_reschedule_id" type="button" value="Reschedule" class="btn ">
+                    <input id="button_cancel_id" type="button" value="Cancel" class="btn ">
                 </div>
             </div>
 

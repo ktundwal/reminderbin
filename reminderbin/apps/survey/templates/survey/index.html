@@ -1,15 +1,24 @@
-{% extends 'survey/base.html' %}
+{% extends 'core/base.html' %}
 
-{% block content %}
-			<div class="post">
-				<div class="header">
-					<h3>TXT4HLTH Survey</h3>
-				</div>
-				<p>
-                    TXT4HLTH Survey is a super simple polling system. You create a survey and can link to that survey from any place. Anyone can reply to your surveys using SMS. <em>No registration necessary</em>
-				</p>
-				<p>
-					So we call it Poll n go! What are you waiting for? <a href="{% url survey:survey_create %}">Create a poll.</a>
-				</p>
-			</div>
+{% block title %}Survey creator{% endblock %}
+
+{% block yield %}
+    <h3>Recent surveys</h3>
+    <div class="content">
+        <ul class="linklist">
+            {% for poll in recent_polls %}
+            <li class="first"><a href="{{poll.get_absolute_url}}">{{poll.title}}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+    <h3>Your surveys</h3>
+    <div class="content">
+        <ul class="linklist">
+            {% for poll in your_polls %}
+            <li class="first"><a href="{{poll.get_absolute_url}}">{{poll.title}}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
 {% endblock %}

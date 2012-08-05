@@ -14,6 +14,7 @@ __status__      = "Development"
 from django.db import models
 from django.contrib.auth.models import User
 import random
+import datetime
 
 CODE_START = 100
 CODE_END = 999
@@ -35,11 +36,13 @@ class Question(models.Model):
     """This class represents a question. It can have 2 or more options."""
     created_on = models.DateTimeField(auto_now_add=True)
 
-    code = models.IntegerField(default = random.randint(CODE_START, CODE_END))
-
     title = models.SlugField(max_length = 200)
     slug = models.SlugField(unique = True, max_length = 200)
     text = models.TextField()
+
+    start = models.DateTimeField(default=datetime.datetime.now, blank=False)
+    end = models.DateTimeField(default=datetime.datetime.now() + datetime.timedelta(hours=1))
+
     allow_multiple = models.BooleanField(default = False)
 
     def save(self):
@@ -75,6 +78,9 @@ class Choice(models.Model):
     """This represents an answer to the Question, and has a foreignkey to it"""
     question = models.ForeignKey(Question, related_name='Choices')
     text = models.TextField()
+
+    code = models.IntegerField(default = random.randint(CODE_START, CODE_END), unique = True, blank=False)
+
     total_votes = models.IntegerField(default = 0)
 
     def __str__(self):

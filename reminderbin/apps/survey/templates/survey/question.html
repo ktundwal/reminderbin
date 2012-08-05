@@ -1,42 +1,40 @@
-{% extends 'survey/base.html' %}
+{% extends 'core/base.html' %}
 
-{% block title %}
-{{block.super}} - {{question.title}}
-{% endblock %}
+{% block title %}{{block.super}} - {{question.title}}{% endblock %}
 
-{% block content %}
-			<div class="post">
-				<div class="header">
-					<h3>{{question.title}}</h3>
-                                        <h4>{{question.text}}</h4>
+{% block yield %}
 
-					<div class="date">Asked on {{question.created_on|date}}</div>
-				</div>
-				<div class="content">
-                                    {% if last_choice %}
-                                        <p>Your last choice was <strong>{{last_choice.text}}</strong>.<br />
-                                        Would you like to modify it?
-                                        </p>
-                                    {% endif %}
-                                        <p>
-                                            <form action="" method="post">
-                                                <ul>
-                                                {% for choice in choices %}
-                                                <li>
-                                                <h4>{{choice.text}}</h4>
-                                                <input type="RADIO" name="choices" value="{{choice.id}}" />
-                                                
-                                                </li>
-                                                {% endfor %}
-                                                <input type="submit" value="Answer Poll" name="submit" />
-                                            </form>
+    <div class="post">
+        <div class="header">
+            <h3>Poll: {{question.title}}</h3>
+            <em>{{question.text}}</em>
 
-                                                
-                                            </ul>
-                                        </p>
-					<p>
-						<a href="{{ question.get_results_url }}">See results.</a>
-					</p>                                
-				</div>			
-			</div>
+            <div class="date">Asked on {{question.created_on|date}}</div>
+            <div>Valid between: {{ question.start|date:"F j, Y H:i" }} and {{ question.end|date:"F j, Y H:i" }}</div>
+        </div>
+        <div class="content">
+            {% if last_choice %}
+                <p>Your last choice was <strong>{{last_choice.text}}</strong>.<br />
+                Would you like to modify it?
+                </p>
+            {% endif %}
+
+            <form action="" method="post">
+                <div class="control-group">
+                    <div class="controls">
+                        {% for choice in choices %}
+                            <label class="radio">
+                                <input type="radio" name="choices" value="{{choice.id}}"><strong>{{choice.text}}</strong> or Text <strong>{{ choice.code }}</strong>
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Answer Poll" name="submit" />
+                or send SMS to <strong>{{ sms_to }}</strong>
+            </form>
+
+            <a href="{{ question.get_results_url }}">See results</a>
+        </div>
+    </div>
 {% endblock %}

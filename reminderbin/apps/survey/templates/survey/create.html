@@ -1,23 +1,31 @@
-{% extends 'survey/base.html' %}
+{% extends 'core/base.html' %}
 
-{% block title %}
-{{block.super}} - Create
-{% endblock %}
+{% load bootstrap_form %}
 
+{% block title %}Create{% endblock %}
 
-{% block content %}
-			<div class="post">
-				<div class="header">
-					<h3>Create</h3>
+{% block yield %}
 
-				</div>
-				<div class="content">
-                                    <form action="" method="post">
-                                        <table>
-                                            {{form}}
-                                        </table>
-                                        <input type="submit" value="Create Poll" name="submit">
-                                    </form>
-				</div>			
-			</div>
+    <div class="container">
+        <h1>Create Survey</h1>
+        <div class="row-fluid show-grid" >
+            <div class="span6 " id="form">
+
+                <form id="new_survey_form_id" action="" method="post" class="form-horizontal">
+                    {% csrf_token %}
+
+                    <div class="control-group{% if field.errors %} error{% endif %}">
+                        {% bootstrap_form form %}
+                    </div>
+
+                    <input id="user_tz_hidden_field" type="hidden" name="user_tz"/>
+
+                    <div class="form-actions btn-group">
+                        <button type="submit" class="btn btn-primary">New survey</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
