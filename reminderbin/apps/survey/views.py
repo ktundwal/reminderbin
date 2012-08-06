@@ -4,6 +4,8 @@ from django.template import RequestContext
 from django.http import Http404
 from django.core.exceptions import ObjectDoesNotExist
 from reminderbin.settings.common import *
+from django.utils.timezone import utc
+import datetime
 
 from models import *
 import forms
@@ -11,6 +13,30 @@ from googlechart import PieChart2D
 
 def index(request):
     return render('survey/index.html', {}, request)
+
+def active_surveys(request):
+    if request.method == 'POST':
+        try:
+            last_choice_id = request.session[question.id]
+            last_choice = Choice.objects.get(id = last_choice_id)
+            last_choice.total_votes -= 1
+            last_choice.save()
+        except KeyError, e:
+            pass
+        choice_id = int(request.POST['choices'])
+        choice = Choice.objects.get(id = choice_id)
+        choice.total_votes += 1
+        choice.save()
+        request.session[question.id] = choice.id
+        return HttpResponseRedirect(question.get_results_url())
+    elif request.method == 'GET':
+        # find all questions that are active
+        active_questions = Question.objects.filter(start__lt=datetime.datetime.utcnow().replace(tzinfo=utc),
+            end__gt=datetime.datetime.utcnow().replace(tzinfo=utc))
+        active_questions_with_choices = [{'question':active_question, 'choices':Choice.objects.filter(question = active_question)} for active_question in active_questions]
+        payload = {'active_questions_with_choices':active_questions_with_choices, 'sms_to':TWILIO_CALLER_ID}
+
+        return render('survey/active.html', payload, request)
 
 def question(request, slug):
     try:

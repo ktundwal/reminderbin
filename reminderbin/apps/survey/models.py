@@ -68,7 +68,7 @@ class Question(models.Model):
         return ('survey:survey_results', [self.slug])
 
     def __unicode__(self):
-        return self.name
+        return self.slug
 
     class Meta:
         verbose_name_plural = "Questions"

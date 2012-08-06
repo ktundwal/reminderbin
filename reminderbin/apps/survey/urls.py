@@ -16,6 +16,7 @@ from django.contrib.auth.decorators import login_required
 
 urlpatterns = patterns('reminderbin.apps.survey.views',
     url(r'^$', 'index', name='survey_index'),
+    url(r'^active/$', 'active_surveys', name='active_surveys_view'),
     url(r'^question/(?P<slug>[^\.^/]+)/$', 'question', name='survey_question'),
     url(r'^create/$', 'create', name='survey_create'),
     url(r'^help/$', 'help', name='survey_help'),

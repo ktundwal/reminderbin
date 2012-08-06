@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{block.super}} - Active surveys{% endblock %}
+
+{% block yield %}
+
+<div class="post">
+    <form action="" method="post">
+        {% for question in active_questions_with_choices %}
+            <div class="header">
+                <h3>Poll: {{question.question.title}}</h3>
+                <em>{{question.question.text}}</em>
+
+                <div class="date">Asked on {{question.question.created_on|date}}</div>
+                <div>Valid between: {{ question.question.start|date:"F j, Y H:i" }} and {{ question.question.end|date:"F j, Y H:i" }}</div>
+            </div>
+            <div class="content">
+                {% if last_choice %}
+                <p>Your last choice was <strong>{{last_choice.text}}</strong>.<br />
+                    Would you like to modify it?
+                </p>
+                {% endif %}
+
+
+                    <div class="control-group">
+                        <div class="controls">
+                            {% for choice in question.choices %}
+                            <label class="radio">
+                                <input type="radio" name="choices" value="{{choice.id}}"><strong>{{choice.text}}</strong> or Text <strong>{{ choice.code }}</strong>
+                            </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+
+            </div>
+        {% endfor %}
+
+        <input type="submit" class="btn btn-primary" value="Answer Poll" name="submit" />
+        or send SMS to <strong>{{ sms_to }}</strong>
+        <a href="{{ question.get_results_url }}">See results</a>
+    </form>
+</div>
+{% endblock %}
