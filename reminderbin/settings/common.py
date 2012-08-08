@@ -82,6 +82,7 @@ SECRET_KEY = '2w__$!-o53-@^2c-=_wx@jd=oupq%v&amp;$--jm=6^ut0l*qthy@q'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
+    'django_mobile.loader.Loader',
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
     'django.template.loaders.eggs.Loader',
@@ -96,6 +97,8 @@ MIDDLEWARE_CLASSES = (
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'reminderbin.apps.core.middleware.TimezoneMiddleware',
+    'django_mobile.middleware.MobileDetectionMiddleware',
+    'django_mobile.middleware.SetFlavourMiddleware',
 )
 
 ROOT_URLCONF = 'reminderbin.urls'
@@ -152,6 +155,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'dajaxice',
     'django_twilio',
+    'django_mobile',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -162,6 +166,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
+    'django_mobile.context_processors.flavour',
 )
 
 # django-registration
