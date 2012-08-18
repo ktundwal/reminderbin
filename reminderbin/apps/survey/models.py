@@ -36,7 +36,7 @@ class Question(models.Model):
     """This class represents a question. It can have 2 or more options."""
     created_on = models.DateTimeField(auto_now_add=True)
 
-    title = models.SlugField(max_length = 200)
+    title = models.CharField(max_length = 200)
     slug = models.SlugField(unique = True, max_length = 200)
     text = models.TextField()
 
@@ -85,3 +85,29 @@ class Choice(models.Model):
 
     def __str__(self):
         return '%s - %s' % (self.question.title, self.text)
+
+class Participant(models.Model):
+    cell = models.CharField(max_length=200)
+    created_on = models.DateTimeField(auto_now_add=True, default=datetime.datetime.now())
+    enrolled_in_beta = models.BooleanField(default=False)
+
+    responses = models.ManyToManyField(Question, related_name='participants')
+
+    def __unicode__(self):
+        return self.cell
+
+    class Meta:
+        ordering = ['-created_on']
+
+class Feedback(models.Model):
+    message = models.CharField(max_length=200)
+    created_on = models.DateTimeField(auto_now_add=True, default=datetime.datetime.now())
+
+    provided_by = models.ForeignKey(Participant, related_name='Feedbacks')
+
+    def __unicode__(self):
+        return '%s: %s' % (self.provided_by.cell, self.message)
+
+    class Meta:
+        verbose_name_plural = "Feedback"
+        ordering = ['-created_on']

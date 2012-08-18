@@ -21,11 +21,11 @@ class Migration(SchemaMigration):
         db.create_table('survey_question', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('created_on', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('title', self.gf('django.db.models.fields.SlugField')(max_length=200)),
+            ('title', self.gf('django.db.models.fields.CharField')(max_length=200)),
             ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=200)),
             ('text', self.gf('django.db.models.fields.TextField')()),
             ('start', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('end', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2012, 8, 5, 0, 0))),
+            ('end', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2012, 8, 12, 0, 0))),
             ('allow_multiple', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
         db.send_create_signal('survey', ['Question'])
@@ -35,7 +35,7 @@ class Migration(SchemaMigration):
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('question', self.gf('django.db.models.fields.related.ForeignKey')(related_name='Choices', to=orm['survey.Question'])),
             ('text', self.gf('django.db.models.fields.TextField')()),
-            ('code', self.gf('django.db.models.fields.IntegerField')(default=185, unique=True)),
+            ('code', self.gf('django.db.models.fields.IntegerField')(default=869, unique=True)),
             ('total_votes', self.gf('django.db.models.fields.IntegerField')(default=0)),
         ))
         db.send_create_signal('survey', ['Choice'])
@@ -53,7 +53,7 @@ class Migration(SchemaMigration):
     models = {
         'survey.choice': {
             'Meta': {'object_name': 'Choice'},
-            'code': ('django.db.models.fields.IntegerField', [], {'default': '185', 'unique': 'True'}),
+            'code': ('django.db.models.fields.IntegerField', [], {'default': '869', 'unique': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'question': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'Choices'", 'to': "orm['survey.Question']"}),
             'text': ('django.db.models.fields.TextField', [], {}),
@@ -63,12 +63,12 @@ class Migration(SchemaMigration):
             'Meta': {'ordering': "['-created_on']", 'object_name': 'Question'},
             'allow_multiple': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'created_on': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
-            'end': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 8, 5, 0, 0)'}),
+            'end': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 8, 12, 0, 0)'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '200'}),
             'start': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'text': ('django.db.models.fields.TextField', [], {}),
-            'title': ('django.db.models.fields.SlugField', [], {'max_length': '200'})
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '200'})
         },
         'survey.survey': {
             'Meta': {'ordering': "['-start']", 'object_name': 'Survey'},

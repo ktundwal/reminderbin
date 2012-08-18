@@ -27,7 +27,8 @@
                 <a href="{% url core:home %}" class="brand">TXT4HLTH</a>
 
                 <ul class="nav pull-right">
-                    <li><a href="{% url survey:survey_index %}">Surveys</a></li>
+                    <li><a href="{% url survey:survey_index %}">All surveys</a></li>
+                    <li><a href="{% url survey:active_surveys_view %}">Active surveys</a></li>
                     <li><a href="{% url survey:survey_create %}">New survey</a></li>
                     {% if user.is_authenticated %}
                         <!--
@@ -56,7 +57,11 @@
             {% endif %}
 
             <div class="container" style='padding: 20px; margin-bottom: 30px; background-color: #eeeeee; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px;'>
-                {% block yield %}{% endblock %}
+                <div class="row-fluid">
+                    <div class="span12">
+                        {% block yield %}{% endblock %}
+                    </div>
+                </div>
             </div><!-- /container -->
 
 
@@ -101,5 +106,8 @@
                 $( ".timePicker" ).timepicker();
             });
         </script>
+
+        {% block javascript %}{% endblock javascript %}
+
     </body>
 </html>

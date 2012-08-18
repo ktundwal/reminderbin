@@ -136,8 +136,8 @@ INSTALLED_APPS = (
     'reminderbin.apps.pins',
 
     'reminderbin.apps.core',
-    'reminderbin.apps.reminders',
 
+    'reminderbin.apps.reminders',
     'reminderbin.apps.survey',
 
     'reminderbin.apps.api',
@@ -232,7 +232,7 @@ LOGGING = {
             'level':'INFO',
         },
         'reminderbin': {
-            'handlers':['mail_admins'],
+            'handlers':['mail_admins', 'console'],
             'propagate': True,
             'level':'ERROR',
         },
