@@ -179,6 +179,13 @@ def get_or_create_participant(cell):
     return participant
 
 
+def process_message(body, cell, participant, request):
+    feedback = Feedback.objects.create(message=body, provided_by=participant)
+    logger.error('Feedback saved: from = %s, body = %s' % (feedback.provided_by.cell, feedback.message))
+    #feedback.save()
+    return sms_reply(request, cell, 'Thx for your feedback -TXT4HLTH')
+
+
 @twilio_view
 def twilio_sms_handler(request, **kwargs):
     """
@@ -195,7 +202,7 @@ def twilio_sms_handler(request, **kwargs):
         body = params['Body']
 
         try:
-            logger.info('SMS received: from = %s, body = %s' % (cell, body))
+            logger.error('SMS received: from = %s, body = %s' % (cell, body))
 
             # add or retrieve participant to the db
             participant = get_or_create_participant(cell)
@@ -205,9 +212,7 @@ def twilio_sms_handler(request, **kwargs):
                 response = process_registration_request(cell, participant, request)
             elif body[0].isdigit() is False:
                 # user sent a message to be displayed in the ticket
-                feedback = Feedback.objects.create(message=body, provided_by=participant)
-                #feedback.save()
-                response = sms_reply(request, cell, 'Thx for your feedback -TXT4HLTH')
+                response = process_message(body, cell, participant, request)
             else:
                 # user sent a numeric code
                 response = process_vote_submission(body, cell, participant, request)
