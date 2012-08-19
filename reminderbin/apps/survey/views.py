@@ -52,7 +52,6 @@ def get_chart_url(slug):
         choice_name = [choice_obj.encode('utf8') for choice_obj in choice_name]
         chart.set_pie_labels(choice_name)
         url = chart.get_url()
-        logger.info('chart url = %s' % url)
         return url
     except Exception, e:
         log_exception('Error generating chart url')
@@ -196,6 +195,8 @@ def twilio_sms_handler(request, **kwargs):
     """
     if request.method == 'POST':
 
+        logger.debug('POST request received on twilio_sms_handler. params = %s' % [(key, request.POST[key]) for key in request.POST.keys()])
+
         response = Response()
 
         params = request.POST
@@ -211,19 +212,24 @@ def twilio_sms_handler(request, **kwargs):
 
             if body.startswith('YES'):
                 # user wants to register
+                logger.debug('User wants to enrol in BETA')
                 response = process_registration_request(cell, participant, request)
             elif body[0].isdigit() is False:
                 # user sent a message to be displayed in the ticket
+                logger.debug('User wants to submit feedback = %s' % body)
                 response = process_message(body, cell, participant, request)
             else:
                 # user sent a numeric code
+                logger.debug('User wants to vote = %s' % body)
                 response = process_vote_submission(body, cell, participant, request)
         except Exception, e:
             log_exception('Exception processing incoming error message')
             response = sms_reply(request, cell, 'An application error occurred. Please try again later. Sorry! -TXT4HLTH')
 
+        logger.debug('Returning SMS response = %s' % response)
         return response
     else:
+        logger.debug('GET request received on twilio_sms_handler. Raising exception.')
         raise Exception('Only POST requests accepted at this endpoint')
 
 @twilio_view
