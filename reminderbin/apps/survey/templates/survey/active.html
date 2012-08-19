@@ -45,7 +45,9 @@
                             <td>{{ choice.text }}</td>
                             <td>{{ choice.code }}</td>
                             {% if forloop.first %}
-                            <td rowspan="{{ question.choices.count }}"><img src={{question.chart}} /></td>
+                            <td rowspan="{{ question.choices.count }}">
+                                {% if question.chart %} <img src={{question.chart}} /> {% endif %}
+                            </td>
                             {% endif %}
                         </tr>
                     {% endfor %}

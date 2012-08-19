@@ -20,50 +20,41 @@ def index(request):
     return render('survey/index.html', {}, request)
 
 def active_surveys(request):
-    if request.method == 'POST':
-        try:
-            last_choice_id = request.session[question.id]
-            last_choice = Choice.objects.get(id = last_choice_id)
-            last_choice.total_votes -= 1
-            last_choice.save()
-        except KeyError, e:
-            pass
-        choice_id = int(request.POST['choices'])
-        choice = Choice.objects.get(id = choice_id)
-        choice.total_votes += 1
-        choice.save()
-        request.session[question.id] = choice.id
-        return HttpResponseRedirect(question.get_results_url())
-    elif request.method == 'GET':
-        # find all questions that are active
-        active_questions = Question.objects.filter(start__lt=datetime.datetime.utcnow().replace(tzinfo=utc),
-            end__gt=datetime.datetime.utcnow().replace(tzinfo=utc))
-        active_questions_with_choices = [{'question':active_question,
-                                          'choices':Choice.objects.filter(question = active_question),
-                                          'chart': get_chart_url(active_question.slug)} for active_question in active_questions]
-        payload = {'active_questions_with_choices':active_questions_with_choices,
-                   'sms_to':TWILIO_CALLER_ID,
-                   'feedback':Feedback.objects.all().reverse()[:5]}
+    # find all questions that are active
+    active_questions = Question.objects.filter(start__lt=datetime.datetime.utcnow().replace(tzinfo=utc),
+        end__gt=datetime.datetime.utcnow().replace(tzinfo=utc))
+    active_questions_with_choices = [{'question':active_question,
+                                      'choices':Choice.objects.filter(question = active_question),
+                                      'chart': get_chart_url(active_question.slug)} for active_question in active_questions]
+    payload = {'active_questions_with_choices':active_questions_with_choices,
+               'sms_to':TWILIO_CALLER_ID,
+               'feedback':Feedback.objects.all().reverse()[:5]}
 
-        return render('survey/active.html', payload, request)
+    return render('survey/active.html', payload, request)
+
 
 def get_chart_url(slug):
     try:
         question = Question.objects.get(slug = slug)
     except ObjectDoesNotExist, e:
         raise Http404
-    total_votes = 0
-    choice_name = []
-    choice_val = []
-    for choice in question.Choices.all():
-        total_votes += choice.total_votes
-        choice_name.append(choice.text)
-        choice_val.append(choice.total_votes)
-    chart = PieChart2D(400, 200)
-    chart.add_data(choice_val)
-    choice_name = [choice_obj.encode('utf8') for choice_obj in choice_name]
-    chart.set_pie_labels(choice_name)
-    return chart.get_url()
+
+    try:
+        total_votes = 0
+        choice_name = []
+        choice_val = []
+        for choice in question.Choices.all():
+            total_votes += choice.total_votes
+            choice_name.append(choice.text)
+            choice_val.append(choice.total_votes)
+        chart = PieChart2D(400, 200)
+        chart.add_data(choice_val)
+        choice_name = [choice_obj.encode('utf8') for choice_obj in choice_name]
+        chart.set_pie_labels(choice_name)
+        return chart.get_url()
+    except Exception, e:
+        log_exception('Error generating chart url')
+        return None
 
 def question(request, slug):
     try:
