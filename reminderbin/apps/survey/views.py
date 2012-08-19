@@ -28,7 +28,7 @@ def active_surveys(request):
                                       'chart': get_chart_url(active_question.slug)} for active_question in active_questions]
     payload = {'active_questions_with_choices':active_questions_with_choices,
                'sms_to':TWILIO_CALLER_ID,
-               'feedback':Feedback.objects.all().reverse()[5:]}
+               'feedback':Feedback.objects.all()[:5]}
 
     return render('survey/active.html', payload, request)
 
