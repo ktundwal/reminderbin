@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a3c8a4f-f8d4-4ff0-b41f-cd78e3018fce" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/active.html" afterPath="$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/active.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reminderbin/apps/survey/views.py" afterPath="$PROJECT_DIR$/reminderbin/apps/survey/views.py" />
     </list>
     <ignored path="reminderbin-src.iws" />
@@ -30,10 +28,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="30" selection-start="2057" selection-end="2057" vertical-scroll-proportion="-3.137255">
+            <state line="30" column="61" selection-start="1357" selection-end="1357" vertical-scroll-proportion="0.5607477">
               <folding />
             </state>
           </provider>
@@ -93,10 +91,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="active.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="active.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/active.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="97" selection-start="1724" selection-end="1724" vertical-scroll-proportion="0.57377046">
+            <state line="42" column="39" selection-start="1347" selection-end="1347" vertical-scroll-proportion="-9.375">
               <folding />
             </state>
           </provider>
@@ -148,8 +146,8 @@
         <option value="$PROJECT_DIR$/reminderbin/apps/survey/models.py" />
         <option value="$PROJECT_DIR$/reminderbin/apps/core/templates/core/base.html" />
         <option value="$PROJECT_DIR$/requirements/common.txt" />
-        <option value="$PROJECT_DIR$/reminderbin/apps/survey/views.py" />
         <option value="$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/active.html" />
+        <option value="$PROJECT_DIR$/reminderbin/apps/survey/views.py" />
       </list>
     </option>
   </component>
@@ -755,16 +753,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/views.py">
+    <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/active.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="30" selection-start="2057" selection-end="2057" vertical-scroll-proportion="-3.137255">
+        <state line="42" column="39" selection-start="1347" selection-end="1347" vertical-scroll-proportion="-9.375">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/active.html">
+    <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="97" selection-start="1724" selection-end="1724" vertical-scroll-proportion="0.57377046">
+        <state line="30" column="61" selection-start="1357" selection-end="1357" vertical-scroll-proportion="0.5607477">
           <folding />
         </state>
       </provider>

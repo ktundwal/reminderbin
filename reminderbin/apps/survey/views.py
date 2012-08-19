@@ -28,7 +28,7 @@ def active_surveys(request):
                                       'chart': get_chart_url(active_question.slug)} for active_question in active_questions]
     payload = {'active_questions_with_choices':active_questions_with_choices,
                'sms_to':TWILIO_CALLER_ID,
-               'feedback':Feedback.objects.all().reverse()[:5]}
+               'feedback':Feedback.objects.all().reverse()[5:]}
 
     return render('survey/active.html', payload, request)
 
@@ -195,7 +195,7 @@ def twilio_sms_handler(request, **kwargs):
         body = params['Body']
 
         try:
-            logger.debug('SMS received: from = %s, body = %s' % (cell, body))
+            logger.info('SMS received: from = %s, body = %s' % (cell, body))
 
             # add or retrieve participant to the db
             participant = get_or_create_participant(cell)
@@ -207,13 +207,13 @@ def twilio_sms_handler(request, **kwargs):
                 # user sent a message to be displayed in the ticket
                 feedback = Feedback.objects.create(message=body, provided_by=participant)
                 feedback.save()
-                response = sms_reply(request, cell, 'Thx')
+                response = sms_reply(request, cell, 'Thx for your feedback -TXT4HLTH')
             else:
                 # user sent a numeric code
                 response = process_vote_submission(body, cell, participant, request)
         except Exception, e:
             log_exception('Exception processing incoming error message')
-            response = sms_reply(request, cell, 'An application error occurred. Please try again later. Sorry!')
+            response = sms_reply(request, cell, 'An application error occurred. Please try again later. Sorry! -TXT4HLTH')
 
         return response
     else:
@@ -231,4 +231,4 @@ def twilio_sms_handler_exception(request, **kwargs):
         body = params['Body']
 
         logger.error('ERROR: Unable to process cell = %s, body = %s' % (cell, body))
-        return sms_reply(request, cell, 'An application error occurred. Please try again later. Sorry!')
+        return sms_reply(request, cell, 'An application error occurred. Please try again later. Sorry! -TXT4HLTH')
