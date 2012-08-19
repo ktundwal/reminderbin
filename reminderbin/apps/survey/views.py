@@ -206,7 +206,7 @@ def twilio_sms_handler(request, **kwargs):
             elif body[0].isdigit() is False:
                 # user sent a message to be displayed in the ticket
                 feedback = Feedback.objects.create(message=body, provided_by=participant)
-                feedback.save()
+                #feedback.save()
                 response = sms_reply(request, cell, 'Thx for your feedback -TXT4HLTH')
             else:
                 # user sent a numeric code
