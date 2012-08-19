@@ -187,7 +187,7 @@ def process_message(body, cell, participant, request):
     return sms_reply(request, cell, 'Thx for your feedback -TXT4HLTH')
 
 
-#@twilio_view
+@twilio_view
 def twilio_sms_handler(request, **kwargs):
     """
     Processes incoming SMS messages
@@ -237,8 +237,8 @@ def twilio_sms_handler(request, **kwargs):
             response = sms_reply(request, cell, 'An application error occurred. Please try again later. Sorry! -TXT4HLTH')
 
         logger.debug('Returning SMS response = %s' % response)
-        #return response
-        return HttpResponse(response, mimetype='application/xml')
+        return response
+        #return HttpResponse(response, mimetype='application/xml')
     else:
         logger.debug('GET request received on twilio_sms_handler. Raising exception.')
         raise Exception('Only POST requests accepted at this endpoint')

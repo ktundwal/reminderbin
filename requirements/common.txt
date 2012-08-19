@@ -14,5 +14,5 @@ South==0.7.6
 django-sentry
 django-registration
 pytz
-git+https://github.com/rdegges/django-twilio.git#egg=django_twilio
+django-twilio==0.2
 pygooglechart
