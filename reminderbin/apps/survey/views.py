@@ -51,7 +51,9 @@ def get_chart_url(slug):
         chart.add_data(choice_val)
         choice_name = [choice_obj.encode('utf8') for choice_obj in choice_name]
         chart.set_pie_labels(choice_name)
-        return chart.get_url()
+        url = chart.get_url()
+        logger.info('chart url = %s' % url)
+        return url
     except Exception, e:
         log_exception('Error generating chart url')
         return None
@@ -181,7 +183,7 @@ def get_or_create_participant(cell):
 
 def process_message(body, cell, participant, request):
     feedback = Feedback.objects.create(message=body, provided_by=participant)
-    logger.error('Feedback saved: from = %s, body = %s' % (feedback.provided_by.cell, feedback.message))
+    logger.debug('Feedback saved: from = %s, body = %s' % (feedback.provided_by.cell, feedback.message))
     #feedback.save()
     return sms_reply(request, cell, 'Thx for your feedback -TXT4HLTH')
 
@@ -202,7 +204,7 @@ def twilio_sms_handler(request, **kwargs):
         body = params['Body']
 
         try:
-            logger.error('SMS received: from = %s, body = %s' % (cell, body))
+            logger.debug('SMS received: from = %s, body = %s' % (cell, body))
 
             # add or retrieve participant to the db
             participant = get_or_create_participant(cell)

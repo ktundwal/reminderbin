@@ -1,5 +1,6 @@
 # Django settings for reminderbin project.
 import os
+import sys
 from reminderbin.settings import *
 from django.contrib.messages import constants as messages
 
@@ -186,6 +187,7 @@ DEFAULT_FROM_EMAIL = 'TXT4HLTH <admin@TXT4HLTH.com>'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+
     'formatters': {
         'verbose': {
             'format': '[%(asctime)s] %(levelname)s %(module)s %(process)d %(thread)d %(message)s'
@@ -207,18 +209,19 @@ LOGGING = {
         'mail_admins': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
         },
         'console':{
             'level':'DEBUG',
             'class':'logging.StreamHandler',
-            'formatter': 'verbose'
+            'formatter': 'verbose',
         },
     },
     'loggers': {
         'django.request': {
             'handlers': ['mail_admins', 'console'],
-            'level': 'ERROR',
+            'level': 'INFO',
             'propagate': True,
         },
         'django': {
@@ -227,14 +230,9 @@ LOGGING = {
             'level':'INFO',
         },
         'reminderbin': {
-            'handlers':['console'],
+            'handlers':['console', 'mail_admins'],
             'propagate': True,
-            'level':'INFO',
-        },
-        'reminderbin': {
-            'handlers':['mail_admins', 'console'],
-            'propagate': True,
-            'level':'ERROR',
+            'level':'DEBUG',
         },
     }
 }
