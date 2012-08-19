@@ -195,14 +195,24 @@ def twilio_sms_handler(request, **kwargs):
     """
     if request.method == 'POST':
 
-        logger.debug('POST request received on twilio_sms_handler. params = %s' % [(key, request.POST[key]) for key in request.POST.keys()])
-
         response = Response()
 
-        params = request.POST
+        try:
+            params = [(key, request.POST[key]) for key in request.POST.keys()]
+            path = request.path
+            cookies = [(key, request.COOKIES[key]) for key in request.COOKIES.keys()]
+            meta = [(key, request.META[key]) for key in request.META.keys()]
+            session = [(key, request.session[key]) for key in request.session.keys()]
+            logger.debug('Request path = %s' % request.path)
+            logger.debug('Request params = %s' % params)
+            logger.debug('Request cookies = %s' % cookies)
+            logger.debug('Request meta = %s' % meta)
+            logger.debug('Request session obj = %s' % session)
+        except:
+            log_exception('Unable to log request details')
 
-        cell = params['From']
-        body = params['Body']
+        cell = request.POST['From']
+        body = request.POST['Body']
 
         try:
             logger.debug('SMS received: from = %s, body = %s' % (cell, body))

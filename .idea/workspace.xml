@@ -32,7 +32,7 @@
       <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="199" column="29" selection-start="7509" selection-end="7509" vertical-scroll-proportion="-0.59695816">
+            <state line="209" column="57" selection-start="8029" selection-end="8029" vertical-scroll-proportion="0.49574468">
               <folding />
             </state>
           </provider>
@@ -511,7 +511,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1394" height="878" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.49703264" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13383839" sideWeight="0.86129457" order="3" side_tool="false" content_ui="tabs" />
@@ -519,10 +519,10 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27741084" sideWeight="0.91543025" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16839762" sideWeight="0.47952443" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.52047557" sideWeight="0.84940654" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16839762" sideWeight="0.75297225" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24702774" sideWeight="0.84940654" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.52047557" sideWeight="0.1454006" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24702774" sideWeight="0.1454006" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4729194" sideWeight="0.88353115" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32973805" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -571,7 +571,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed logging issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="added more logging info" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -591,6 +591,7 @@
     <MESSAGE value="added django-mobile for device detection" />
     <MESSAGE value="implemented survey&#10;" />
     <MESSAGE value="fixed logging issue" />
+    <MESSAGE value="added more logging info" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -716,7 +717,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="199" column="29" selection-start="7509" selection-end="7509" vertical-scroll-proportion="-0.59695816">
+        <state line="209" column="57" selection-start="8029" selection-end="8029" vertical-scroll-proportion="0.49574468">
           <folding />
         </state>
       </provider>
