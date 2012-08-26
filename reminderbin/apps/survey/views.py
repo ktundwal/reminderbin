@@ -14,7 +14,7 @@ from pygooglechart import PieChart2D
 
 from django_twilio.decorators import twilio_view
 from reminderbin.apps.core.utils import logger, log_exception
-from .utils import *
+from .sms import *
 
 def index(request):
     return render('survey/index.html', {}, request)
@@ -139,53 +139,6 @@ def render(template_name, payload, request):
     payload.update({'recent_polls':recent_polls, 'your_polls':your_polls})
     return render_to_response(template_name, payload, RequestContext(request))
 
-
-def process_registration_request(cell, participant, request):
-    participant.enrolled_in_beta = True
-    participant.save()
-    return sms_reply(request, cell, 'Thanks for registering. Stay tuned for invite')
-
-
-def process_vote_submission(body, cell, participant, request):
-    digits = [int(s) for s in body.split() if s.isdigit()]
-    if len(digits) is 0:
-        return sms_reply(request, cell, 'Please submit valid code to vote')
-    else:
-        choices = Choice.objects.filter(code=digits[0])
-        if choices.exists() and len(choices) is not 0:
-            choice = choices[0]
-
-            question = choice.question
-            if participant in question.participants.all():
-                return sms_reply(request, cell, 'You have already voted for question = %s' % question.title)
-            else:
-                choice = choices[0]
-                choice.total_votes += 1
-                choice.save()
-                question.participants.add(participant)
-                question.save()
-                return sms_reply(request, cell,
-                    'You voted = %s. Thx. Reply YES to participate in TXT4HLTH beta' % choice.text)
-        else:
-            return sms_reply(request, cell, 'Please submit valid code to vote')
-
-
-def get_or_create_participant(cell):
-    participants = Participant.objects.filter(cell=cell)
-    if participants.exists() and len(participants) is not 0:
-        participant = participants[0]
-    else:
-        participant = Participant.objects.create(cell=cell)
-        participant.save()
-    return participant
-
-
-def process_message(body, cell, participant, request):
-    feedback = Feedback.objects.create(message=body, provided_by=participant)
-    logger.debug('Feedback saved: from = %s, body = %s' % (feedback.provided_by.cell, feedback.message))
-    #feedback.save()
-    return sms_reply(request, cell, 'Thx for your feedback -TXT4HLTH')
-
 #@twilio_view
 def twilio_sms_handler(request, **kwargs):
     """
@@ -193,9 +146,6 @@ def twilio_sms_handler(request, **kwargs):
     run this first localtunnel -k /Users/browsepad/.ssh/id_rsa.pub 8000
     """
     if request.method == 'POST':
-
-        response = Response()
-
         try:
             params = [(key, request.POST[key]) for key in request.POST.keys()]
             path = request.path
@@ -213,29 +163,7 @@ def twilio_sms_handler(request, **kwargs):
         cell = request.POST['From']
         body = request.POST['Body']
 
-        try:
-            logger.debug('SMS received: from = %s, body = %s' % (cell, body))
-
-            # add or retrieve participant to the db
-            participant = get_or_create_participant(cell)
-
-            if body.startswith('YES'):
-                # user wants to register
-                logger.debug('User wants to enrol in BETA')
-                response = process_registration_request(cell, participant, request)
-            elif body[0].isdigit() is False:
-                # user sent a message to be displayed in the ticket
-                logger.debug('User wants to submit feedback = %s' % body)
-                response = process_message(body, cell, participant, request)
-            else:
-                # user sent a numeric code
-                logger.debug('User wants to vote = %s' % body)
-                response = process_vote_submission(body, cell, participant, request)
-        except Exception, e:
-            log_exception('Exception processing incoming error message')
-            response = sms_reply(request, cell, 'An application error occurred. Please try again later. Sorry! -TXT4HLTH')
-
-        logger.debug('Returning SMS response = %s' % response)
+        response = sms_reply(process_sms(body, cell))
         #return response
         return HttpResponse(response, mimetype='application/xml')
     else:

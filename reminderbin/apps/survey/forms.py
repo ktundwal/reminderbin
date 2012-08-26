@@ -53,6 +53,4 @@ class CreateSurvey(forms.Form):
             if self.cleaned_data[field]:
                 choice = Choice(question = question, text = self.cleaned_data[field])
                 choice.save()
-                choice.code = int(str(question.id) + str(choice.id))
-                choice.save()
         return question

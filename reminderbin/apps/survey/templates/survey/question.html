@@ -24,7 +24,7 @@
                     <div class="controls">
                         {% for choice in choices %}
                             <label class="radio">
-                                <input type="radio" name="choices" value="{{choice.id}}"><strong>{{choice.text}}</strong> or Text <strong>{{ choice.code }}</strong>
+                                <input type="radio" name="choices" value="{{choice.id}}"><strong>{{choice.text}}</strong> or Text <strong>{{ choice.simple_code }}</strong>
                             </label>
                         {% endfor %}
                     </div>
