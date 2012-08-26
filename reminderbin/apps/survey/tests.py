@@ -9,6 +9,7 @@ from django.utils.timezone import now
 class SmokeTestCase(unittest.TestCase):
     """
     Load question, choices and mock receiving SMS
+    (reminderbin)$ python manage.py test survey
     """
     def setUp(self):
 

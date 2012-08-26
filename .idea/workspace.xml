@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4a3c8a4f-f8d4-4ff0-b41f-cd78e3018fce" name="Default" comment="bug troubleshooting: SMS processing is called twice. Removing @twilio_view decorator back again">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/reminderbin/apps/survey/sms.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/reminderbin/apps/survey/tests.py" />
+    <list default="true" id="4a3c8a4f-f8d4-4ff0-b41f-cd78e3018fce" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/reminderbin/apps/survey/migrations/0005_auto__add_field_question_next__add_field_choice_simple_code__add_field.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/reminderbin/apps/survey/migrations/0006_auto__del_field_choice_code.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reminderbin/apps/survey/admin.py" afterPath="$PROJECT_DIR$/reminderbin/apps/survey/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reminderbin/apps/survey/forms.py" afterPath="$PROJECT_DIR$/reminderbin/apps/survey/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reminderbin/apps/survey/models.py" afterPath="$PROJECT_DIR$/reminderbin/apps/survey/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/active.html" afterPath="$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/active.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/question.html" afterPath="$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/question.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reminderbin/apps/survey/utils.py" afterPath="$PROJECT_DIR$/reminderbin/apps/survey/utils.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reminderbin/apps/survey/views.py" afterPath="$PROJECT_DIR$/reminderbin/apps/survey/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements/common.txt" afterPath="$PROJECT_DIR$/requirements/common.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reminderbin/apps/survey/tests.py" afterPath="$PROJECT_DIR$/reminderbin/apps/survey/tests.py" />
     </list>
     <ignored path="reminderbin-src.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,30 +31,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="165" column="36" selection-start="6288" selection-end="6288" vertical-scroll-proportion="-8.039216">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sms.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/sms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="76" selection-start="1817" selection-end="1817" vertical-scroll-proportion="2.4313726">
-              <folding>
-                <element signature="e#26#59#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="tests.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="40" selection-start="3951" selection-end="3951" vertical-scroll-proportion="-23.529411">
+            <state line="47" column="0" selection-start="1894" selection-end="1894" vertical-scroll-proportion="-18.6">
               <folding>
                 <element signature="e#26#59#0" expanded="true" />
               </folding>
@@ -69,69 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="question.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/question.html">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="138" selection-start="1074" selection-end="1074" vertical-scroll-proportion="-12.375">
+            <state line="165" column="40" selection-start="6281" selection-end="6292" vertical-scroll-proportion="0.5846154">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="active.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/active.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="32" selection-start="1481" selection-end="1481" vertical-scroll-proportion="0.36121672">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reminderbin/settings/common.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="129.92">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="common.txt" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requirements/common.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="0" selection-start="150" selection-end="162" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reminderbin/apps/reminders/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="88" selection-start="3386" selection-end="3386" vertical-scroll-proportion="-15.960784">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dev.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reminderbin/settings/dev.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="765" selection-end="765" vertical-scroll-proportion="-10.8">
-              <folding>
-                <element signature="e#69#78#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="4" selection-start="491" selection-end="491" vertical-scroll-proportion="-3.745098">
-              <folding>
-                <element signature="e#350#378#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -163,9 +78,9 @@
         <option value="$PROJECT_DIR$/reminderbin/apps/survey/views.py" />
         <option value="$PROJECT_DIR$/reminderbin/apps/survey/models.py" />
         <option value="$PROJECT_DIR$/reminderbin/apps/survey/sms.py" />
-        <option value="$PROJECT_DIR$/reminderbin/apps/survey/tests.py" />
         <option value="$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/question.html" />
         <option value="$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/active.html" />
+        <option value="$PROJECT_DIR$/reminderbin/apps/survey/tests.py" />
       </list>
     </option>
   </component>
@@ -200,16 +115,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -238,39 +143,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="requirements" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reminderbin-src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reminderbin-src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="reminderbin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reminderbin-src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reminderbin-src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="reminderbin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="settings" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -336,12 +209,18 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
+              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="survey" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -352,14 +231,14 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="87" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="96" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="92" />
-    <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="92" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../cmd-line-get-tweets" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="99" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="892" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="893" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="892" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="97" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="94" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -373,8 +252,8 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="options.lastSelected" value="com.jetbrains.django.DjangoModulesConfigurable" />
     <property name="DefaultHtmlFileTemplate" value="Html" />
-    <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -453,6 +332,25 @@
       <option name="MULTIPROCESS" value="false" />
       <method />
     </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <module name="reminderbin-src" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <method />
+    </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -472,25 +370,6 @@
       <option name="runNoReload" value="false" />
       <option name="useCustomRunCommand" value="false" />
       <option name="customRunCommand" value="" />
-      <method />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <module name="reminderbin-src" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -608,24 +487,24 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1395" height="878" extended-state="6" />
+    <frame x="0" y="22" width="1395" height="878" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13383839" sideWeight="0.86129457" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4002642" sideWeight="0.9114583" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16011861" sideWeight="0.7912814" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16234247" sideWeight="0.9273448" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5416116" sideWeight="0.83617496" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20871863" sideWeight="0.07931802" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20871863" sideWeight="0.91549295" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.072655216" sideWeight="0.07931802" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20871863" sideWeight="0.91549295" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32973805" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Heroku" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4002642" sideWeight="0.9114583" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893" sideWeight="0.49703264" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -669,7 +548,7 @@
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug troubleshooting: SMS processing is called twice. Removing @twilio_view decorator back again" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;push questionnaire&quot; first draft implementation&#10;+ve/-ve tests" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -693,6 +572,7 @@
     <MESSAGE value="bug troubleshooting: SMS processing is called twice. Removing @twilio_view decorator" />
     <MESSAGE value="bug troubleshooting: SMS processing is called twice. Reinstating @twilio_view decorator. Plugged django-twilio to 0.2" />
     <MESSAGE value="bug troubleshooting: SMS processing is called twice. Removing @twilio_view decorator back again" />
+    <MESSAGE value="&quot;push questionnaire&quot; first draft implementation&#10;+ve/-ve tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -707,126 +587,86 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="25" selection-start="325" selection-end="325" vertical-scroll-proportion="-7.8">
-          <folding>
-            <element signature="e#26#47#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="13" column="25" selection-start="325" selection-end="325" vertical-scroll-proportion="-7.8" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reminderbin/apps/reminders/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="29" selection-start="213" selection-end="213" vertical-scroll-proportion="-4.2">
-          <folding />
-        </state>
+        <state line="8" column="29" selection-start="213" selection-end="213" vertical-scroll-proportion="-4.2" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="26" selection-end="26" vertical-scroll-proportion="-1.2">
-          <folding />
-        </state>
+        <state line="2" column="0" selection-start="26" selection-end="26" vertical-scroll-proportion="-1.2" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reminderbin/apps/reminders/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="349" selection-end="349" vertical-scroll-proportion="0.30508474">
-          <folding />
-        </state>
+        <state line="12" column="0" selection-start="349" selection-end="349" vertical-scroll-proportion="0.30508474" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="84" selection-start="2104" selection-end="2156" vertical-scroll-proportion="-19.4">
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="53" column="84" selection-start="2104" selection-end="2156" vertical-scroll-proportion="-19.4" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reminderbin/settings/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="16" selection-start="501" selection-end="501" vertical-scroll-proportion="-7.2">
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="12" column="16" selection-start="501" selection-end="501" vertical-scroll-proportion="-7.2" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reminderbin/settings/dev.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="765" selection-end="765" vertical-scroll-proportion="-10.8">
-          <folding>
-            <element signature="e#69#78#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="18" column="0" selection-start="765" selection-end="765" vertical-scroll-proportion="0.49360147" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reminderbin/apps/reminders/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="88" selection-start="3386" selection-end="3386" vertical-scroll-proportion="-15.960784">
-          <folding />
-        </state>
+        <state line="117" column="88" selection-start="3386" selection-end="3386" vertical-scroll-proportion="1.5623801" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/requirements/common.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="150" selection-end="162" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="7" column="0" selection-start="150" selection-end="162" vertical-scroll-proportion="0.18356644" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reminderbin/settings/common.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="129.92">
-          <folding />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-5.937843" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="4" selection-start="491" selection-end="491" vertical-scroll-proportion="0.3666027" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/sms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="76" selection-start="1817" selection-end="1817" vertical-scroll-proportion="2.4313726" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/question.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="138" selection-start="1074" selection-end="1074" vertical-scroll-proportion="-12.375" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/active.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="32" selection-start="1481" selection-end="1481" vertical-scroll-proportion="0.34671533" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="0" selection-start="1894" selection-end="1894" vertical-scroll-proportion="-18.6">
+          <folding>
+            <element signature="e#26#59#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="165" column="36" selection-start="6288" selection-end="6288" vertical-scroll-proportion="-8.039216">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="4" selection-start="491" selection-end="491" vertical-scroll-proportion="-3.745098">
-          <folding>
-            <element signature="e#350#378#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/sms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="76" selection-start="1817" selection-end="1817" vertical-scroll-proportion="2.4313726">
-          <folding>
-            <element signature="e#26#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="40" selection-start="3951" selection-end="3951" vertical-scroll-proportion="-23.529411">
-          <folding>
-            <element signature="e#26#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/question.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="138" selection-start="1074" selection-end="1074" vertical-scroll-proportion="-12.375">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/reminderbin/apps/survey/templates/survey/active.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="32" selection-start="1481" selection-end="1481" vertical-scroll-proportion="0.36121672">
+        <state line="165" column="40" selection-start="6281" selection-end="6292" vertical-scroll-proportion="0.5846154">
           <folding />
         </state>
       </provider>
